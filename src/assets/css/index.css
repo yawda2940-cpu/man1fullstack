@@ -1,0 +1,748 @@
+/* css/style.css */
+
+/* Memberi jarak aman agar konten tidak tertutup header melayang */
+main {
+    padding-top: 90px; /* Angka ini bisa Anda naik/turunkan (misal 90px atau 120px) sampai jaraknya pas */
+}
+
+/* 1. CSS Variables (Jelaskan ke dosen: Ini untuk konsistensi warna) */
+:root {
+    --primary-green: #2e8b57;    /* Hijau utama */
+    --dark-green: #1a5233;       /* Hijau gelap untuk header/footer */
+    --light-green: #e9f5ed;      /* Hijau terang untuk background */
+    --text-dark: #333333;
+    --text-light: #ffffff;
+    --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 2. Reset & Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--light-green);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+/* =========================================================
+   ANIMASI SAAT DI-SCROLL (SCROLL REVEAL)
+   ========================================================= */
+
+/* 1. State Awal (Sembunyi): Elemen dibuat transparan dan turun ke bawah */
+.animasi-scroll {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Durasi dan kehalusan animasi */
+}
+
+/* 2. State Akhir (Tampil): Class ini akan ditambahkan otomatis oleh JavaScript nanti */
+.animasi-scroll.tampil {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 3. Header & Navigation */
+header {
+    background-color: var(--dark-green);
+    color: var(--text-light);
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo-container img {
+    height: 55px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+nav ul li a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #a8e6cf;
+}
+
+/* =========================================================
+   PENGATURAN MANUAL LOGO DAN TEKS (HEADER)
+   ========================================================= */
+
+/* 1. Mengatur jarak antara Logo dan Teks */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 18px; /* UBAH ANGKA INI: Untuk menjauhkan/mendekatkan logo dengan teks */
+}
+
+/* 2. Mengatur ukuran Logo */
+.logo-container img {
+    height: 60px; /* UBAH ANGKA INI: Untuk membesarkan/mengecilkan logo */
+    width: auto;  /* Biarkan auto agar logo tidak gepeng/distorsi */
+}
+
+/* 3. Mengatur Teks Judul "MAN 1 KOTA MADIUN" */
+.logo-container h3 {
+    font-size: 1.3rem; /* UBAH ANGKA INI: Ukuran huruf judul */
+    font-weight: 700; /* Ketebalan huruf (700 = bold, 400 = normal) */
+    letter-spacing: 1.5px; /* Jarak kerenggangan antar huruf */
+    color: var(--text-light); /* Warna tulisan (mengikuti variabel putih) */
+    margin-bottom: 2px; /* UBAH ANGKA INI: Jarak vertikal antara judul dan slogan */
+    line-height: 1.2;
+}
+
+/* 4. Mengatur Teks Slogan "Gali Potensi Raih Prestasi" */
+.logo-container small {
+    font-size: 0.85rem; /* UBAH ANGKA INI: Ukuran huruf slogan */
+    font-weight: 400; /* Ketebalan huruf */
+    color: #c4ead5; /* Warna hijau sangat muda agar beda dengan judul utamanya */
+    letter-spacing: 0.5px;
+    display: block; /* Memastikan slogan selalu turun ke baris baru dengan rapi */
+}
+
+
+/* 4. Section: Sambutan (Hero Section) */
+.hero {
+    /* Menggunakan gedung.svg dan overlay gelap agar teks terbaca jelas */
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(46, 139, 87, 0.7)), url('/src/assets/gedung.svg') center/cover no-repeat;
+    color: var(--text-light);
+    padding: 60px 5% 0 5%; /* Padding bawah 0 agar foto nempel di bawah */
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch; /* Memanjang ke bawah */
+    min-height: 500px;
+}
+
+/* --- Area Kiri (Foto Kepsek) --- */
+.hero-image-wrapper {
+    flex-basis: 100%;
+    max-width: 350px; /* Kita paksa agar pembungkusnya tidak bisa lebih lebar dari 350px */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: 320px; 
+    justify-content: flex-end; 
+    position: relative;
+    z-index: 5;
+    transition: transform 0.6s ease
+    /* Hapus padding-bottom yang lama agar lebih presisi */
+}
+
+/* Efek saat cursor diarahkan ke card */
+.hero-image-wrapper:hover {
+    transform: translateY(-30px); /* Efek melayang: Card naik ke atas sejauh 30 pixel */
+}
+
+.kepsek-img {
+    width: 200%;
+    max-width: 500px; /* Batasan maksimal lebar gambar */
+    height: 500%; /* SANGAT PENTING untuk SVG agar tidak distorsi/memanjang */
+    object-fit: contain;
+    display: block;
+    position: relative;
+    z-index: 1; /* Gambar ada di layer 1 */
+}
+
+.name-badge {
+    background-color: #1a1a1a; 
+    color: white;
+    padding: 20px 100px;
+    border-radius: 100px; 
+    position: absolute;
+    bottom: 40px; /* Kita tarik ke bawah sedikit agar pas di tengah garis potongan gambar */
+    z-index: 10; /* SANGAT PENTING: Memaksa nama selalu berada DI ATAS gambar (Layer 10) */
+    font-size: 2.0rem;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.5);
+    white-space: nowrap;
+}
+
+/* --- Area Kanan (Teks) --- */
+.hero-text {
+    flex-basis: 55%;
+    padding: 20px 0 60px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero-text h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.hero-text p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+    font-size: 1.2rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.6); /* Efek bayangan agar teks pop-up */
+}
+
+.hero-text .arabic {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.text-right {
+    text-align: right;
+}
+
+/* 5. Section: Cards (Keunggulan, Kabar, dll) */
+/* 4. Global Sections (Title & Grid) - Perbaikan Grid System */
+
+/* =========================================================
+   PERBAIKAN FOKUS 1: KEUNGGULAN MADRASAH
+   ========================================================= */
+
+.khusus-keunggulan {
+    background-color: #2c8c56 !important; /* Hijau gelap untuk background section */
+    padding: 60px 20px;
+}
+
+.judul-keunggulan {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 40px;
+}
+
+.judul-keunggulan h2 {
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+    color: #ffffff;
+}
+
+.judul-keunggulan p {
+    font-size: 1rem;
+    color: #ffffff;
+}
+
+/* Ini kunci agar card berjajar 3 ke samping */
+.wadah-card-3 {
+    display: flex !important;
+    justify-content: center;
+    gap: 30px; /* Jarak antar card */
+    max-width: 1100px;
+    margin: 0 auto; /* Memposisikan kumpulan card di tengah layar */
+}
+
+/* Gaya untuk masing-masing card */
+.card-hijau-muda {
+    background-color: #3bb16f !important; /* Hijau muda terang */
+    color: #ffffff;
+    flex: 1; /* Membagi lebar sama rata untuk ke-3 card */
+    padding: 40px 20px;
+    border-radius: 15px; /* Sudut membulat */
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+/* Efek saat cursor diarahkan ke card */
+.card-hijau-muda:hover {
+    transform: translateY(-10px); /* Efek melayang: Card naik ke atas sejauh 10 pixel */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); /* Menambahkan bayangan yang lebih tebal di bawahnya */
+    background-color: #45c47d !important; /* Warna hijau berubah sedikit lebih terang/menyala */
+}
+
+.card-hijau-muda img {
+    width: 55px;
+    height: 55px;
+    margin-bottom: 20px;
+    filter: brightness(0) invert(1); /* Memaksa warna icon menjadi putih */
+}
+
+.card-hijau-muda h3 {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    color: #ffffff;
+}
+
+.card-hijau-muda p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #ffffff;
+}
+
+.khusus-keunggulan {
+    /* Menerapkan Gradient Hijau Transparan (85%) di atas Foto Background */
+    background: linear-gradient(rgba(44, 140, 86, 0.85), rgba(44, 140, 86, 0.85)), url('/src/assets/foto1.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    padding: 100px 20px; /* Saya besarkan sedikit paddingnya agar lebih mirip desain asli */
+}
+
+/* 6. Kabar Section (Polaroid Style, Tanpa Tumpang Tindih) */
+/* =========================================================
+   PERBAIKAN FOKUS 2: KABAR MADRASAH (Gaya Polaroid)
+   ========================================================= */
+
+.khusus-kabar {
+    background-color: #2c8c56 !important; /* Warna hijau solid agar menyatu dengan section atasnya */
+    padding: 20px 20px 80px 20px; /* Padding atas dibuat kecil agar tidak terlalu jauh jaraknya */
+}
+
+.judul-kabar {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 40px;
+}
+
+.judul-kabar h2 {
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+    color: #ffffff;
+}
+
+.judul-kabar p {
+    font-size: 1rem;
+    color: #ffffff;
+}
+
+/* Memaksa card berjajar 3 ke samping */
+.wadah-berita-3 {
+    display: flex !important;
+    justify-content: center;
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* Membuat efek card putih bingkai Polaroid */
+.card-polaroid {
+    background-color: #ffffff !important;
+    flex: 1; /* Dibagi rata 3 */
+    padding: 15px; /* Ini rahasianya: Memberi ruang putih di sekeliling foto */
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+/* Efek saat cursor diarahkan ke card */
+.card-polaroid:hover {
+    transform: translateY(-10px); /* Efek melayang: Card naik ke atas sejauh 10 pixel */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); /* Menambahkan bayangan yang lebih tebal di bawahnya */
+}
+
+.card-polaroid img {
+    width: 100%;
+    height: 200px; /* Semua foto tingginya diseragamkan */
+    object-fit: cover; /* Agar foto terpotong rapi, tidak gepeng */
+    border-radius: 8px; /* Ujung foto sedikit melengkung */
+    margin-bottom: 15px;
+}
+
+.konten-berita {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Mendorong elemen di bawahnya agar turun maksimal */
+    text-align: left;
+}
+
+.konten-berita small {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #555555;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.konten-berita h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #222222;
+    line-height: 1.4;
+    margin-bottom: 25px; /* Memberi jarak nafas dengan bagian tanggal */
+}
+
+/* Memisahkan Tanggal di kiri dan Read More di kanan */
+.meta-berita {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto; /* Mendorong container ini ke posisi paling dasar card */
+}
+
+.meta-berita .tanggal {
+    font-size: 0.8rem;
+    color: #888888;
+}
+
+.meta-berita .read-more {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #2e8b57; /* Warna tulisan Read More hijau */
+    text-decoration: none;
+}
+
+.meta-berita .read-more:hover {
+    text-decoration: underline;
+}
+
+/* 6. Footer */
+footer {
+    background-color: var(--text-light);
+    color: var(--text-dark);
+    padding: 40px 5% 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    border-top: 3px solid var(--primary-green);
+}
+
+
+/* =========================================================
+   MODE IPAD & TABLET (Mendeteksi layar di bawah 992px)
+   ========================================================= */
+@media screen and (max-width: 992px) {
+    
+    /* 1. OBAT UTAMA: Lepaskan Semua Kuncian Tinggi! */
+    /* Ini akan memperbaiki latar belakang abu-abu yang terputus di halaman Home */
+    section, header, main, div {
+        height: auto !important;
+        min-height: 0 !important;
+    }
+
+    /* 2. Merapikan Navigasi (Header) */
+    header {
+        flex-direction: column !important;
+        padding: 20px !important;
+        text-align: center;
+    }
+    nav ul {
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 15px !important;
+    }
+
+    /* 3. DETEKSI OTOMATIS FLEXBOX (Kiri-Kanan jadi Atas-Bawah) */
+    /* Kode ini akan memaksa SEMUA elemen yang tadinya Kiri-Kanan menjadi Atas-Bawah */
+    .profil-container, 
+    .layanan-container, 
+    .partner-grid,
+    [style*="display: flex"], /* Mencari elemen yang punya style flex inline */
+    section > div { /* Menargetkan wadah utama di dalam section (seperti di halaman Home) */
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 30px !important;
+    }
+
+    /* 4. Melebarkan elemen anak menjadi 100% penuh */
+    .profil-kiri, .profil-kanan,
+    .layanan-kiri, .layanan-kanan,
+    [class*="kiri"], [class*="kanan"], /* Mendeteksi class apapun yang ada kata 'kiri' atau 'kanan' */
+    section > div > div { /* Menargetkan blok kiri/kanan di dalam section Home */
+        width: 100% !important;
+        max-width: 100% !important;
+        text-align: center !important;
+    }
+
+    /* Menyelamatkan Foto Kepala Sekolah agar tidak pecah/kebesaran */
+    img[src*="kepsek"], .foto-kepsek {
+        max-width: 300px !important;
+        margin: 0 auto !important;
+        display: block !important;
+    }
+}
+
+/* =========================================================
+   MODE HP (Mendeteksi layar di bawah 768px)
+   ========================================================= */
+@media screen and (max-width: 768px) {
+    
+    /* 1. Deteksi Otomatis Tipografi (Mengecilkan teks agar pas di HP) */
+    h2 { font-size: 1.5rem !important; margin-bottom: 15px !important; }
+    h3 { font-size: 1.2rem !important; }
+    p, li { 
+        font-size: 0.95rem !important; 
+        text-align: left !important; /* Teks paragraf lebih nyaman dibaca rata kiri di HP */
+    }
+
+    /* 2. DETEKSI OTOMATIS GRID (Menjadikan semua Grid 1 Kolom ke bawah) */
+    .visi-misi-grid, .sarpras-grid, .ekskul-grid,
+    .wadah-card-3, .form-grid-2, .kontak-grid,
+    .ppdb-grid-3, .ppdb-grid-2 {
+        display: grid !important;
+        grid-template-columns: 1fr !important; /* Memaksa menjadi 1 kolom penuh */
+        gap: 20px !important;
+        width: 100% !important;
+    }
+
+    /* 3. Penyesuaian Ruang Napas (Padding) di HP */
+    section {
+        padding: 40px 5% !important;
+    }
+}
+
+
+/* =========================================================
+   PROFESSIONAL FOOTER (Style Referensi Web Sekolah)
+   ========================================================= */
+.footer-professional {
+    display: block !important; /* OBAT UTAMA: Mematikan efek flex kiri-kanan dari CSS lama */
+    width: 100% !important;
+    background-color: #154f2c;
+    color: #ffffff;
+    margin-top: 50px;
+    padding: 0 !important; /* Membuang sisa padding dari CSS lama */
+}
+
+/* --- Container Atas (4 Kolom) --- */
+.footer-top {
+    display: grid;
+    /* Kolom pertama (Branding) lebih lebar dari kolom lainnya */
+    grid-template-columns: 2fr 1fr 1fr 1.5fr; 
+    gap: 40px;
+    padding: 70px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- Kolom 1: Branding --- */
+.footer-brand .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.footer-brand .footer-logo img {
+    width: 50px;
+    height: auto;
+}
+
+.footer-brand .footer-logo h3 {
+    font-size: 1.2rem;
+    margin: 0;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.footer-brand p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 25px;
+    color: #d1e8db; /* Putih kehijauan agar teks lebih lembut di mata */
+}
+
+/* Ikon Sosmed Custom */
+.social-icons {
+    display: flex;
+    gap: 12px;
+}
+
+.social-icons a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 38px;
+    height: 38px;
+    background-color: rgba(255, 255, 255, 0.1); /* Efek kaca transparan */
+    border-radius: 8px; /* Sudut agak membulat */
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    background-color: #4ad389; /* Warna hijau muda terang saat di-hover */
+    transform: translateY(-3px); /* Efek mengambang */
+}
+
+/* --- Kolom 2, 3, 4: Navigasi & Kontak --- */
+.footer-links h4, .footer-contact h4 {
+    font-size: 1.15rem;
+    margin-bottom: 25px;
+    color: #ffffff;
+    position: relative;
+    padding-bottom: 12px;
+}
+
+/* Garis bawah estetis pada judul kolom */
+.footer-links h4::after, .footer-contact h4::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 3px;
+    background-color: #4ad389; 
+    border-radius: 2px;
+}
+
+.footer-links ul, .footer-contact ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links ul li {
+    margin-bottom: 15px;
+}
+
+.footer-links ul li a {
+    color: #d1e8db;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.footer-links ul li a:hover {
+    color: #ffffff;
+    padding-left: 8px; /* Animasi teks bergeser sedikit ke kanan saat ditunjuk */
+}
+
+/* Baris khusus Kontak */
+.footer-contact ul li {
+    display: flex;
+    gap: 12px;
+    color: #d1e8db;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 18px;
+}
+
+.footer-contact ul li .icon {
+    font-size: 1.1rem;
+    min-width: 20px; /* Mencegah ikon menyusut jika teks panjang */
+}
+
+/* --- Container Bawah (Copyright) --- */
+.footer-bottom {
+    display: block !important; /* Memaksa kotak copyright turun ke bawah */
+    width: 100% !important;
+    background-color: #0e3b20; 
+    text-align: center;
+    padding: 20px 5%;
+    font-size: 0.9rem;
+    color: #a8d5bc;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* =========================================================
+   RESPONSIVE FOOTER (Otomatis melipat di Tablet & HP)
+   ========================================================= */
+@media screen and (max-width: 992px) {
+    .footer-top {
+        grid-template-columns: 1fr 1fr; /* Berubah menjadi 2 kolom di iPad/Tablet */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .footer-top {
+        grid-template-columns: 1fr; /* Berubah menjadi 1 kolom bersusun di HP */
+        gap: 45px;
+        padding: 50px 5%;
+    }
+    
+    .footer-bottom {
+        font-size: 0.85rem;
+        line-height: 1.5;
+    }
+}
+
+
+/* =========================================================
+   DROPDOWN MENU (MENU TURUNAN)
+   ========================================================= */
+
+/* 1. Posisi dasar menu utama */
+nav ul li.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* 2. Sembunyikan menu turunan dari awal */
+.dropdown-content {
+    display: none;
+    position: absolute; /* Biar melayang ke bawah dan tidak nabrak teks lain */
+    background-color: #ffffff; /* Warna background menu turunan */
+    min-width: 180px; /* Lebar kotak menu */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Efek bayangan */
+    z-index: 100; /* Biar posisinya paling depan menutupi gambar */
+    border-radius: 5px;
+    top: 100%; 
+    left: 0;
+    padding: 10px 0;
+}
+
+/* 3. Desain teks di dalam menu turunan */
+.dropdown-content li {
+    display: block;
+    width: 100%;
+}
+
+.dropdown-content li a {
+    color: #333333 !important; /* Warna teks hitam/gelap */
+    padding: 10px 20px !important;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    transition: background 0.3s;
+}
+
+/* 4. Efek saat menu turunan ditunjuk kursor (Hover) */
+.dropdown-content li a:hover {
+    background-color: #e5eedd; /* Warna hijau super tipis/muda */
+    color: #154f2c !important; /* Teks berubah jadi hijau tua */
+}
+
+/* 5. SIHIR UTAMA: Munculkan menu turunan saat menu utama ditunjuk kursor */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+/* =========================================
+   EFEK LAMPU INDIKATOR (ACTIVE LINK REACT)
+   ========================================= */
+
+/* Ini akan aktif otomatis pada menu utama yang sedang diklik */
+nav ul li a.active {
+    color: #f1c40f; /* Warna kuning emas, silakan ubah sesuai selera */
+    font-weight: bold;
+}
+
+/* Menambahkan garis bawah (underline) yang estetik */
+nav ul li a.active::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #f1c40f; 
+    margin-top: 5px;
+    border-radius: 2px;
+}
+
+/* Matikan garis bawah untuk menu dropdown agar tidak aneh */
+nav ul li.dropdown a.active::after {
+    display: none;
+}

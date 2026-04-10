@@ -1,0 +1,500 @@
+/* =========================================================
+   HALAMAN PROFIL (profil.html)
+   ========================================================= */
+
+/* =========================================================
+   FOKUS 1: PROFIL MADRASAH (HERO SECTION)
+   ========================================================= */
+
+.profil-hero {
+    /* Menggunakan gedung.svg dan overlay gelap agar teks terbaca jelas */
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(46, 139, 87, 0.7)), url('src/assets/gedung.svg') center/cover no-repeat;
+    color: var(--text-light);
+    padding: 60px 5% 0 5%; /* Padding bawah 0 agar foto nempel di bawah */
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch; /* Memanjang ke bawah */
+    min-height: 500px;
+}
+
+.profil-container {
+    /* KUNCI: Memaksa tata letak Flexbox (2 kolom berjajar) */
+    display: flex !important;
+    align-items: center; /* Meratakan teks dan foto secara vertikal di tengah */
+    justify-content: space-between;
+    gap: 100px; /* Jarak antara foto dan teks */
+    max-width: 1100px;
+    margin: 0 auto; /* Menengahkan container di layar */
+}
+
+/* --- Pengaturan Kolom Kiri (Foto) --- */
+.profil-kiri img {
+    width: 100% !important; /* JANGAN DIUBAH: Ini memastikan foto mengikuti persenan .profil-kiri di atas */
+    height: auto !important;
+    border-radius: 12px !important;
+    display: block !important;
+    position: relative !important; /* Memaksa foto tidak melayang menabrak teks */
+}
+
+.img-profil {
+    width: 100%;
+    height: auto;
+    border: 6px solid rgba(255, 255, 255, 0.25); /* Menambahkan bingkai putih transparan sesuai desain */
+    border-radius: 12px; /* Melengkungkan sudut foto dan bingkai */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); /* Bayangan yang lebih dalam */
+    display: block;
+}
+
+/* --- Pengaturan Kolom Kanan (Teks) --- */
+.profil-kanan {
+    width: 90% !important; /* UBAH ANGKA INI: Mengatur lebar area teks. (Catatan: Total kiri + kanan + gap sebaiknya tidak lebih dari 100%) */
+    color: #ffffff !important;
+    text-align: justify !important;
+    position: relative !important; /* Memastikan teks tidak tenggelam di bawah foto */
+    z-index: 2 !important;
+}
+
+.profil-kanan h2 {
+    font-size: 2.2rem;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+    color: #ffffff;
+}
+
+.profil-kanan p {
+    font-size: 1.0rem;
+    line-height: 1.8; /* Jarak baris yang nyaman */
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+/* =========================================================
+   FOKUS 2: VISI & MISI MADRASAH (VERTIKAL ATAS-BAWAH)
+   ========================================================= */
+
+.visi-misi-section {
+    background-color: #2c8c56 !important; 
+    padding: 80px 5%;
+}
+
+.judul-section {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.judul-section h2 {
+    color: #ffffff;
+    font-size: 2rem;
+    letter-spacing: 1px;
+}
+
+/* Menggunakan CSS Grid untuk 1 Kolom Vertikal */
+.visi-misi-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important; /* KUNCI UTAMA: Memaksa menjadi 1 kolom penuh */
+    gap: 40px !important; /* Jarak antara kotak Visi (atas) dan Misi (bawah) */
+    max-width: 900px; /* Dikecilkan dari 1100px agar saat di laptop, baris teks tidak terlalu panjang dan melelahkan mata */
+    margin: 0 auto;
+}
+
+/* Desain Card Garis Tepi (Outline) */
+.card-outline {
+    border: 2px solid rgba(255, 255, 255, 0.4) !important; 
+    border-radius: 15px !important;
+    padding: 40px 50px !important; /* Padding kiri-kanan dibesarkan sedikit agar isi kotak bisa bernapas */
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+/* Kotak Ikon Kosong sesuai desain */
+.icon-kotak {
+    width: 80px;
+    height: 80px;
+    background-color: #f4fcf7; 
+    border-radius: 12px;
+    margin-bottom: 25px;
+}
+
+.card-outline h3 {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+/* Teks Visi */
+.teks-visi {
+    text-align: center;
+    font-size: 1.25rem; /* Dibesarkan sedikit agar menonjol di tengah kotak yang lebar */
+    line-height: 1.8;
+    font-style: italic; /* Diberi gaya miring agar terlihat elegan seperti kutipan */
+    margin: 0;
+}
+
+/* Khusus list numbering pada Misi */
+.misi-list {
+    text-align: left; 
+    font-size: 1rem; 
+    line-height: 1.8; /* Jarak baris yang lega */
+    padding-left: 25px; 
+    width: 100%; 
+    margin: 0;
+}
+
+.misi-list li {
+    margin-bottom: 15px; 
+    text-align: justify; /* Rata kanan-kiri agar terlihat seperti dokumen formal yang rapi */
+}
+
+/* =========================================================
+   FOKUS 3: SARANA & PRASARANA
+   ========================================================= */
+
+.sarpras-section {
+    background-color: #4f9f71 !important; /* Warna hijau senada */
+    padding: 40px 5% 80px 5%; /* Padding atas sedikit dikurangi agar nyambung dengan section Visi Misi */
+}
+
+.sarpras-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important; /* KUNCI: Memaksa 4 kolom sejajar */
+    gap: 25px !important; /* Jarak rapi antar card */
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.card-sarpras {
+    background-color: #ffffff !important;
+    border-radius: 12px !important;
+    /* RAHASIA: overflow: hidden memaksa ujung foto terpotong mengikuti radius card */
+    overflow: hidden !important; 
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15) !important;
+    text-align: center;
+    transition: transform 0.3s ease; /* Animasi mulus saat mouse lewat */
+}
+
+.card-sarpras:hover {
+    transform: translateY(-5px); /* Efek melayang elegan */
+}
+
+.card-sarpras img {
+    width: 100% !important;
+    height: 160px !important; /* Tinggi semua foto dikunci agar seragam */
+    object-fit: cover !important; /* Memastikan foto terpotong rapi, tidak gepeng/distorsi */
+    display: block;
+}
+
+.card-sarpras h4 {
+    color: #41a36b !important; /* Tulisan hijau tua sesuai desain */
+    font-size: 0.95rem !important;
+    font-weight: 700 !important;
+    padding: 15px 10px !important;
+    margin: 0 !important;
+    letter-spacing: 0.5px;
+}
+
+/* =========================================================
+   FOKUS 4: PARTNER MADRASAH
+   ========================================================= */
+
+.partner-section {
+    background-color: #2c8c56 !important; /* Warna hijau senada */
+    padding: 40px 5% 100px 5%; /* Padding bawah dibesarkan sedikit agar ada jarak ke Footer */
+}
+
+/* Menggunakan CSS Grid untuk 2 Kolom */
+.partner-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important; 
+    gap: 40px !important; 
+    max-width: 1100px;
+    margin: 0 auto;
+    align-items: stretch !important; /* KUNCI: Memaksa kedua card memiliki tinggi yang sama persis walaupun teksnya berbeda panjang */
+}
+
+/* Desain Outline Card (Mirip Visi Misi) */
+.card-partner {
+    border: 2px solid rgba(255, 255, 255, 0.4) !important; 
+    border-radius: 15px !important;
+    padding: 40px 30px !important;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Menengahkan konten secara horizontal */
+}
+
+/* Pengaturan Logo Institusi */
+.logo-partner {
+    height: 110px !important; /* Batasi tingginya agar rapi */
+    width: auto !important; /* Lebar menyesuaikan otomatis agar tidak gepeng */
+    margin-bottom: 25px !important;
+    /* opsional: drop shadow ringan untuk logo */
+    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.2)); 
+}
+
+.card-partner h3 {
+    font-size: 1.4rem !important;
+    margin-bottom: 20px !important;
+    line-height: 1.4 !important;
+    text-align: center !important;
+    letter-spacing: 0.5px;
+}
+
+.card-partner p {
+    font-size: 0.95rem !important;
+    line-height: 1.7 !important;
+    text-align: justify !important; /* Rata kanan kiri agar terlihat seperti dokumen formal */
+}
+
+
+/* =========================================================
+   HALAMAN DATA GURU & TENAGA PENDIDIK
+   ========================================================= */
+
+.guru-hero {
+    /* 1. Opacity diturunkan jadi 0.4 agar gedung terlihat sangat jelas */
+    /* 2. Posisi diubah dari 'center' menjadi 'top center' agar bagian atas gedung tidak terpotong */
+    background: linear-gradient(135deg, #2c8c56 0%, #154f2c 100%) !important;
+    padding: 100px 5% 120px 5%; /* Padding atas sedikit dibesarkan agar judul lebih lega */
+    min-height: 100vh;
+    display: block;
+    position: relative;
+    z-index: 1;
+}
+
+.guru-title {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 60px;
+}
+
+.guru-title h1 {
+    font-size: 2.8rem;
+    line-height: 1.4;
+    font-weight: 700;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.guru-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 Kolom berjajar */
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.guru-card {
+    /* Sihir Gradient: Gradasi halus dari hijau agak tua di atas ke hijau cerah di bawah */
+    background: linear-gradient(to bottom, #1d8a47 40%, #3cb064 70%); 
+    border-radius: 30px;
+    overflow: hidden; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 30px;
+    box-shadow: 0 15px 25px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efek melayang saat mouse diarahkan ke kartu */
+.guru-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 30px rgba(0,0,0,0.25);
+}
+
+.guru-info {
+    padding: 0 15px;
+    margin-bottom: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+.guru-info h3 {
+    color: #ffffff;
+    font-size: 1.35rem;
+    margin-bottom: 5px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.guru-info p {
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 400;
+    margin: 0;
+}
+
+.guru-img {
+    width: 100%;
+    margin-top: auto; /* Trik sakti: Memaksa foto selalu menempel di dasar (bawah) kartu */
+    display: block;
+}
+
+/* --- RESPONSIVE DESIGN UNTUK DATA GURU --- */
+@media screen and (max-width: 992px) {
+    .guru-grid { grid-template-columns: repeat(3, 1fr); } /* 3 Kolom di iPad */
+    .guru-title h1 { font-size: 2.2rem; }
+}
+
+@media screen and (max-width: 768px) {
+    .guru-grid { grid-template-columns: repeat(2, 1fr); } /* 2 Kolom di HP */
+    .guru-title h1 { font-size: 1.8rem; }
+}
+
+@media screen and (max-width: 480px) {
+    .guru-grid { grid-template-columns: 1fr; } /* 1 Kolom penuh di HP kecil */
+}
+
+
+
+
+/* =========================================================
+   RESPONSIVE DESIGN (MEDIA QUERIES)
+   Ini adalah "Obat" agar website rapi di HP & Tablet
+   ========================================================= */
+
+/* Aturan Emas 1: Pastikan semua gambar responsif secara default */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* =========================================================
+   MODE IPAD & TABLET (Mendeteksi layar di bawah 992px)
+   ========================================================= */
+@media screen and (max-width: 992px) {
+    
+    /* 1. OBAT UTAMA: Lepaskan Semua Kuncian Tinggi! */
+    /* Ini akan memperbaiki latar belakang abu-abu yang terputus di halaman Home */
+    section, header, main, div {
+        height: auto !important;
+        min-height: 0 !important;
+    }
+
+    /* 2. Merapikan Navigasi (Header) */
+    header {
+        flex-direction: column !important;
+        padding: 20px !important;
+        text-align: center;
+    }
+    nav ul {
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 15px !important;
+    }
+
+    /* 3. DETEKSI OTOMATIS FLEXBOX (Kiri-Kanan jadi Atas-Bawah) */
+    /* Kode ini akan memaksa SEMUA elemen yang tadinya Kiri-Kanan menjadi Atas-Bawah */
+    .profil-container, 
+    .layanan-container, 
+    .partner-grid,
+    [style*="display: flex"], /* Mencari elemen yang punya style flex inline */
+    section > div { /* Menargetkan wadah utama di dalam section (seperti di halaman Home) */
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 30px !important;
+    }
+
+    /* 4. Melebarkan elemen anak menjadi 100% penuh */
+    .profil-kiri, .profil-kanan,
+    .layanan-kiri, .layanan-kanan,
+    [class*="kiri"], [class*="kanan"], /* Mendeteksi class apapun yang ada kata 'kiri' atau 'kanan' */
+    section > div > div { /* Menargetkan blok kiri/kanan di dalam section Home */
+        width: 100% !important;
+        max-width: 100% !important;
+        text-align: center !important;
+    }
+
+    /* Menyelamatkan Foto Kepala Sekolah agar tidak pecah/kebesaran */
+    img[src*="kepsek"], .foto-kepsek {
+        max-width: 300px !important;
+        margin: 0 auto !important;
+        display: block !important;
+    }
+}
+
+/* =========================================================
+   MODE HP (Mendeteksi layar di bawah 768px)
+   ========================================================= */
+@media screen and (max-width: 768px) {
+    
+    /* 1. Deteksi Otomatis Tipografi (Mengecilkan teks agar pas di HP) */
+    h2 { font-size: 1.5rem !important; margin-bottom: 15px !important; }
+    h3 { font-size: 1.2rem !important; }
+    p, li { 
+        font-size: 0.95rem !important; 
+        text-align: left !important; /* Teks paragraf lebih nyaman dibaca rata kiri di HP */
+    }
+
+    /* 2. DETEKSI OTOMATIS GRID (Menjadikan semua Grid 1 Kolom ke bawah) */
+    .visi-misi-grid, .sarpras-grid, .ekskul-grid,
+    .wadah-card-3, .form-grid-2, .kontak-grid,
+    .ppdb-grid-3, .ppdb-grid-2 {
+        display: grid !important;
+        grid-template-columns: 1fr !important; /* Memaksa menjadi 1 kolom penuh */
+        gap: 20px !important;
+        width: 100% !important;
+    }
+
+    /* 3. Penyesuaian Ruang Napas (Padding) di HP */
+    section {
+        padding: 40px 5% !important;
+    }
+}
+
+/* =========================================================
+   EFEK INTERAKTIF JAVASCRIPT
+   ========================================================= */
+
+/* 1. Efek Sticky Header */
+header {
+    /* Pastikan header Anda punya transisi agar perubahannya halus */
+    transition: all 0.3s ease; 
+    position: fixed; /* Membuatnya selalu menempel di layar */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+header.sticky {
+    padding: 10px 5%; /* Mengecilkan ukuran header saat di-scroll */
+    background-color: rgba(159, 237, 181, 0.95); /* Sedikit transparan/kaca */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1); /* Memberi bayangan */
+}
+
+/* 2. Efek Scroll Reveal */
+.reveal {
+    opacity: 0; /* Awalnya tidak terlihat */
+    transform: translateY(60px); /* Awalnya posisinya turun 60px ke bawah */
+    transition: all 0.8s ease-out; /* Kecepatan animasi ayunan */
+}
+
+.reveal.active {
+    opacity: 1; /* Menjadi terlihat */
+    transform: translateY(0); /* Kembali ke posisi semula */
+}
+
+/* =========================================================
+   PERBAIKAN BENTROK REVEAL & HOVER
+   ========================================================= */
+
+/* Mengembalikan efek melayang (hover) setelah kartu selesai di-reveal */
+.guru-card.reveal.active:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 30px rgba(0,0,0,0.25);
+    /* Mengembalikan kecepatan transisi kilat milik hover (0.3s) 
+       dan menimpa kecepatan lambat reveal (0.8s) */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Mengembalikan efek melayang (hover) setelah kartu selesai di-reveal */
+.card-sarpras.reveal.active:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 30px rgba(0,0,0,0.25);
+    /* Mengembalikan kecepatan transisi kilat milik hover (0.3s) 
+       dan menimpa kecepatan lambat reveal (0.8s) */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
