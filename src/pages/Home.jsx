@@ -100,7 +100,7 @@ export default function Home() {
             {/* BUNGKUS KARTU KETIGA */}
             <ScrollReveal>
                 <div className="card-hijau-muda">
-                    <img src="/src/assets/icon-building.svg" alt="Icon" />
+                    <img src="/icon-building.svg" alt="Icon" />
                     <h3>BIMBINGAN PTN</h3>
                     <p>Bimbingan Belajar Persiapan Masuk PTN diadakan untuk...</p>
                 </div>

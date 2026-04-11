@@ -97,13 +97,13 @@ export default function ProfilMadrasah() {
             
             <div className="partner-grid">
                 <div className="card-partner">
-                    <img src="/pnm.png" alt="Logo ITS Surabaya" className="logo-partner" />
+                    <img src="/PNM.png" alt="Logo ITS Surabaya" className="logo-partner" />
                     <h3>Institut Teknologi Sepuluh Nopember Surabaya</h3>
                     <p>Kolaborasi antara MAN 1 Kota Madiun dan Institut Teknologi Sepuluh Nopember (ITS) Surabaya adalah salah satu program unggulan madrasah yang paling menonjol. Kemitraan ini diwujudkan melalui PRODISTIK (Program Pendidikan Terapan Bidang Teknologi Informasi dan Komunikasi).</p>
                 </div>
                 
                 <div className="card-partner">
-                    <img src="/pnm.png" alt="Logo Politeknik Negeri Madiun" className="logo-partner" />
+                    <img src="/PNM.png" alt="Logo Politeknik Negeri Madiun" className="logo-partner" />
                     <h3>Politeknik Negeri Madiun</h3>
                     <p>Kemitraan dengan Politeknik Negeri Madiun (PNM), kampus Anda sendiri, memiliki corak yang berbeda dari ITS dan lebih berfokus pada implementasi Tri Dharma Perguruan Tinggi, khususnya dalam pilar Pengabdian kepada Masyarakat (PKM) dan penelitian terapan.</p>
                 </div>
