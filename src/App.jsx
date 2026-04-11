@@ -1,5 +1,6 @@
 import React from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom'; 
+import { Analytics } from "@vercel/analytics/react";
 import { AnimatePresence } from 'framer-motion';
 import Header from './components/Header';
 import Admin from './pages/Admin';
@@ -50,7 +51,7 @@ export default function App() {
         </Routes>
       </AnimatePresence>
 
-    
+    <Analytics />
 
     
 
