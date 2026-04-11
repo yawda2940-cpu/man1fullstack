@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import useIsMobile from '../hooks/useIsMobile';
 import ScrollReveal from '../components/ScrollReveal';
 
 // 1. Mengimpor alat Firebase
@@ -11,10 +12,13 @@ export default function Home() {
     // 1. Remote Control untuk geser
     const scrollRef = useRef(null);
 
-    // 2. Wadah untuk menyimpan data pengumuman
+    // 2. Aktifkan radarnya di dalam fungsi komponen
+  const isMobile = useIsMobile();
+
+    // 3. Wadah untuk menyimpan data pengumuman
     const [kabarMadrasah, setKabarMadrasah] = useState([]);
 
-    // 3. Rumus Geser Kanan-Kiri
+    // 4. Rumus Geser Kanan-Kiri
     const geser = (arah) => {
         if (scrollRef.current) {
             const jarakGeser = 380; // Jarak per 1 kartu
@@ -49,10 +53,11 @@ export default function Home() {
         });
     };
     return (
+        
         <main>
-            <section className="hero">
+        <section className="hero" style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', alignItems: 'center' }}>
             <div className="hero-image-wrapper">
-                <img src="/kepsek.svg" alt="Bpk. Trisnoto S.PD., M.M." className="kepsek-img" />
+                <img src="/kepsek.svg" alt="Bpk. Trisnoto S.PD., M.M." className="kepsek-img" width="300" height="400" />
                 <div className="name-badge">
                     <strong>Trisnoto S.PD., M.M.</strong>
                 </div>
@@ -78,11 +83,11 @@ export default function Home() {
                 <p>Mengapa memilih MAN 1 Kota Madiun</p>
             </div>
             
-                    <div className="wadah-card-3">
+                    <div className="wadah-card-3" style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: '20px' }}>
             {/* BUNGKUS KARTU PERTAMA */}
             <ScrollReveal>
                 <div className="card-hijau-muda">
-                    <img src="/icon-gear.svg" alt="Icon" />
+                    <img src="/icon-gear.svg" alt="Icon" width="50" height="50" />
                     <h3>KELAS KETERAMPILAN</h3>
                     <p>Kelas Keterampilan adalah kelas yang menawarkan pembelajaran praktis...</p>
                 </div>
@@ -91,7 +96,7 @@ export default function Home() {
             {/* BUNGKUS KARTU KEDUA */}
             <ScrollReveal>
                 <div className="card-hijau-muda">
-                    <img src="/icon-person.svg" alt="Icon" />
+                    <img src="/icon-person.svg" alt="Icon" width="50" height="50" />
                     <h3>KELAS KEDINASAN</h3>
                     <p>Kelas Persiapan Kedinasan merupakan program pembelajaran...</p>
                 </div>
@@ -100,7 +105,7 @@ export default function Home() {
             {/* BUNGKUS KARTU KETIGA */}
             <ScrollReveal>
                 <div className="card-hijau-muda">
-                    <img src="/icon-building.svg" alt="Icon" />
+                    <img src="/icon-building.svg" alt="Icon" width="50" height="50" />
                     <h3>BIMBINGAN PTN</h3>
                     <p>Bimbingan Belajar Persiapan Masuk PTN diadakan untuk...</p>
                 </div>
@@ -157,7 +162,7 @@ export default function Home() {
                         <div key={kabar.id} style={{ flex: '0 0 350px' }}> 
                             <ScrollReveal>
                                 <div className="card-polaroid">
-                                    <img src="/berita1.jpg" alt={kabar.judul}/>
+                                    <img src="/berita1.jpg" alt={kabar.judul} width="350" height="200" style={{ objectFit: 'cover' }} />
                                     <div className="konten-berita">
                                         <small>KABAR MADRASAH</small>
                                         <h4>{kabar.judul}</h4>
@@ -175,18 +180,20 @@ export default function Home() {
                     ))}
                 </div>
 
-                {/* Tombol Panah Kanan */}
-                <button 
-                    onClick={() => geser('kanan')}
-                    style={{
-                        position: 'absolute', right: '0', top: '50%', transform: 'translateY(-50%)', zIndex: 10,
-                        background: '#1b5e20', color: 'white', border: 'none', borderRadius: '50%',
-                        width: '45px', height: '45px', cursor: 'pointer', boxShadow: '0 4px 10px rgba(0,0,0,0.2)',
-                        fontSize: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center'
-                    }}
-                >
-                    &#10095; {/* Simbol panah kanan */}
-                </button>
+                {/* Tombol Panah Kanan (HANYA MUNCUL DI LAPTOP) */}
+                {!isMobile && (
+                    <button 
+                        onClick={() => geser('kanan')}
+                        style={{
+                            position: 'absolute', right: '0', top: '50%', transform: 'translateY(-50%)', zIndex: 10,
+                            background: '#1b5e20', color: 'white', border: 'none', borderRadius: '50%',
+                            width: '45px', height: '45px', cursor: 'pointer', boxShadow: '0 4px 10px rgba(0,0,0,0.2)',
+                            fontSize: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center'
+                        }}
+                    >
+                        &#10095; {/* Simbol panah kanan */}
+                    </button>
+                )}
 
             </div>
         </section>

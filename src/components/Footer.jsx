@@ -6,7 +6,7 @@ export default function Footer() {
         <div className="footer-top">
             <div className="footer-brand">
                 <div className="footer-logo">
-                    <img src="/src/assets/logo.svg" alt="Logo MAN 1 Madiun" />
+                    <img src="/logo.svg" alt="Logo MAN 1 Madiun" />
                     <h3>MAN 1 KOTA MADIUN</h3>
                 </div>
                 <p>Madrasah Aliyah Negeri Berkarakter, Unggul Akademik, Aktif Berorganisasi, dan Peduli sesama dengan motto Gali Potensi Raih Prestasi.</p>

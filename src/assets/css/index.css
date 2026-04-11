@@ -88,39 +88,39 @@ nav ul li a:hover {
 }
 
 /* =========================================================
-   PENGATURAN MANUAL LOGO DAN TEKS (HEADER)
+   PENGATURAN LOGO DAN TEKS (Otomatis Mengecil pakai clamp)
    ========================================================= */
 
-/* 1. Mengatur jarak antara Logo dan Teks */
 .logo-container {
     display: flex;
     align-items: center;
-    gap: 18px; /* UBAH ANGKA INI: Untuk menjauhkan/mendekatkan logo dengan teks */
+    /* Jarak 18px di laptop, mengecil otomatis jadi 10px di HP */
+    gap: clamp(10px, 2vw, 18px); 
 }
 
-/* 2. Mengatur ukuran Logo */
 .logo-container img {
-    height: 60px; /* UBAH ANGKA INI: Untuk membesarkan/mengecilkan logo */
-    width: auto;  /* Biarkan auto agar logo tidak gepeng/distorsi */
+    /* Tinggi 60px di laptop, mengecil otomatis jadi 45px di HP */
+    height: clamp(45px, 5vw, 60px); 
+    width: auto;  
 }
 
-/* 3. Mengatur Teks Judul "MAN 1 KOTA MADIUN" */
 .logo-container h3 {
-    font-size: 1.3rem; /* UBAH ANGKA INI: Ukuran huruf judul */
-    font-weight: 700; /* Ketebalan huruf (700 = bold, 400 = normal) */
-    letter-spacing: 1.5px; /* Jarak kerenggangan antar huruf */
-    color: var(--text-light); /* Warna tulisan (mengikuti variabel putih) */
-    margin-bottom: 2px; /* UBAH ANGKA INI: Jarak vertikal antara judul dan slogan */
+    /* Font 1.3rem di laptop, mengecil otomatis jadi 1.05rem di HP */
+    font-size: clamp(1.05rem, 2.5vw, 1.3rem); 
+    font-weight: 700; 
+    letter-spacing: 1px; 
+    color: var(--text-light); 
+    margin-bottom: 2px; 
     line-height: 1.2;
 }
 
-/* 4. Mengatur Teks Slogan "Gali Potensi Raih Prestasi" */
 .logo-container small {
-    font-size: 0.85rem; /* UBAH ANGKA INI: Ukuran huruf slogan */
-    font-weight: 400; /* Ketebalan huruf */
-    color: #c4ead5; /* Warna hijau sangat muda agar beda dengan judul utamanya */
+    /* Font 0.85rem di laptop, mengecil otomatis jadi 0.7rem di HP */
+    font-size: clamp(0.7rem, 1.5vw, 0.85rem); 
+    font-weight: 400; 
+    color: #c4ead5; 
     letter-spacing: 0.5px;
-    display: block; /* Memastikan slogan selalu turun ke baris baru dengan rapi */
+    display: block; 
 }
 
 
@@ -428,17 +428,6 @@ footer {
         min-height: 0 !important;
     }
 
-    /* 2. Merapikan Navigasi (Header) */
-    header {
-        flex-direction: column !important;
-        padding: 20px !important;
-        text-align: center;
-    }
-    nav ul {
-        flex-wrap: wrap !important;
-        justify-content: center !important;
-        gap: 15px !important;
-    }
 
     /* 3. DETEKSI OTOMATIS FLEXBOX (Kiri-Kanan jadi Atas-Bawah) */
     /* Kode ini akan memaksa SEMUA elemen yang tadinya Kiri-Kanan menjadi Atas-Bawah */
