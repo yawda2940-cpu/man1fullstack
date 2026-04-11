@@ -6,7 +6,7 @@
 
 .program-hero {
     /* Overlay hijau digelapkan sedikit agar teks & card lebih menonjol */
-     background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(46, 139, 87, 0.7)), url('src/assets/gedung.svg') center/cover no-repeat;
+     background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(46, 139, 87, 0.7)), url('/gedung.svg') center/cover no-repeat;
     padding: 80px 5% 110px 5% !important; /* Padding bawah ditambah agar card tidak terlalu mepet tepi */
     color: #ffffff;
 }

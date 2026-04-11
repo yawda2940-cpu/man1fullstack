@@ -9,7 +9,7 @@
 }
 
 .hero-pengaduan {
-    background: linear-gradient(rgba(26, 85, 50, 0.85), rgba(26, 85, 50, 0.85)), url('src/assets/gedung.svg') center/cover no-repeat;
+    background: linear-gradient(rgba(26, 85, 50, 0.85), rgba(26, 85, 50, 0.85)), url('/gedung.svg') center/cover no-repeat;
 }
 
 .bg-hijau-standar {

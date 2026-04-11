@@ -5,7 +5,7 @@
 /* --- 1. BACKGROUND BERKELANJUTAN --- */
 .ppdb-background-wrapper {
     /* Background ditaruh di wrapper utama agar nyambung dari atas ke bawah */
-    background: linear-gradient(rgba(44, 140, 86, 0.85), rgba(44, 140, 86, 0.85)), url('src/assets/gedung.svg') center/cover no-repeat !important;
+    background: linear-gradient(rgba(44, 140, 86, 0.85), rgba(44, 140, 86, 0.85)), url('/gedung.svg') center/cover no-repeat !important;
     /* opsional: background-attachment: fixed; (jika ingin background diam saat di-scroll) */
     min-height: 100vh;
 }

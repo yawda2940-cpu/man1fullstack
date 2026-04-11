@@ -30,7 +30,7 @@ export default function Ekstrakurikuler() {
                     <div style={{ display: 'flex', gap: '30px', alignItems: 'center', flexWrap: 'wrap' }}>
                         <div style={{ flex: '1 1 300px' }}> {/* Kolom Gambar */}
                             <img 
-                                src="/src/assets/gedung.png" 
+                                src="/gedung.png" 
                                 alt="Kegiatan Pramuka" 
                                 style={{ width: '100%', height: '250px', objectFit: 'cover', borderRadius: '8px' }} 
                             />
@@ -51,7 +51,7 @@ export default function Ekstrakurikuler() {
                     <div style={{ display: 'flex', gap: '30px', alignItems: 'center', flexWrap: 'wrap' }}>
                         <div style={{ flex: '1 1 300px' }}>
                             <img 
-                                src="/src/assets/gedung.png" 
+                                src="/gedung.png" 
                                 alt="Kegiatan Paskibraka" 
                                 style={{ width: '100%', height: '250px', objectFit: 'cover', borderRadius: '8px' }} 
                             />
@@ -72,7 +72,7 @@ export default function Ekstrakurikuler() {
                     <div style={{ display: 'flex', gap: '30px', alignItems: 'center', flexWrap: 'wrap' }}>
                         <div style={{ flex: '1 1 300px' }}>
                             <img 
-                                src="/src/assets/gedung.png" 
+                                src="/gedung.png" 
                                 alt="Kegiatan PMR" 
                                 style={{ width: '100%', height: '250px', objectFit: 'cover', borderRadius: '8px' }} 
                             />
@@ -93,7 +93,7 @@ export default function Ekstrakurikuler() {
                     <div style={{ display: 'flex', gap: '30px', alignItems: 'center', flexWrap: 'wrap' }}>
                         <div style={{ flex: '1 1 300px' }}>
                             <img 
-                                src="/src/assets/gedung.png" 
+                                src="/gedung.png" 
                                 alt="Kegiatan Hadrah" 
                                 style={{ width: '100%', height: '250px', objectFit: 'cover', borderRadius: '8px' }} 
                             />
@@ -114,7 +114,7 @@ export default function Ekstrakurikuler() {
                     <div style={{ display: 'flex', gap: '30px', alignItems: 'center', flexWrap: 'wrap' }}>
                         <div style={{ flex: '1 1 300px' }}>
                             <img 
-                                src="/src/assets/gedung.png" 
+                                src="/gedung.png" 
                                 alt="Kegiatan Tahfidz" 
                                 style={{ width: '100%', height: '250px', objectFit: 'cover', borderRadius: '8px' }} 
                             />
@@ -135,7 +135,7 @@ export default function Ekstrakurikuler() {
                     <div style={{ display: 'flex', gap: '30px', alignItems: 'center', flexWrap: 'wrap' }}>
                         <div style={{ flex: '1 1 300px' }}>
                             <img 
-                                src="/src/assets/gedung.png" 
+                                src="/gedung.png" 
                                 alt="Kegiatan Rohis" 
                                 style={{ width: '100%', height: '250px', objectFit: 'cover', borderRadius: '8px' }} 
                             />
@@ -156,7 +156,7 @@ export default function Ekstrakurikuler() {
                     <div style={{ display: 'flex', gap: '30px', alignItems: 'center', flexWrap: 'wrap' }}>
                         <div style={{ flex: '1 1 300px' }}>
                             <img 
-                                src="/src/assets/gedung.png" 
+                                src="/gedung.png" 
                                 alt="Kegiatan Jurnalistik" 
                                 style={{ width: '100%', height: '250px', objectFit: 'cover', borderRadius: '8px' }} 
                             />
@@ -177,7 +177,7 @@ export default function Ekstrakurikuler() {
                     <div style={{ display: 'flex', gap: '30px', alignItems: 'center', flexWrap: 'wrap' }}>
                         <div style={{ flex: '1 1 300px' }}>
                             <img 
-                                src="/src/assets/gedung.png" 
+                                src="/gedung.png" 
                                 alt="Kegiatan Pemrograman" 
                                 style={{ width: '100%', height: '250px', objectFit: 'cover', borderRadius: '8px' }} 
                             />
