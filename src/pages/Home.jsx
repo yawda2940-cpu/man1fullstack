@@ -52,7 +52,7 @@ export default function Home() {
         <main>
             <section className="hero">
             <div className="hero-image-wrapper">
-                <img src="/src/assets/kepsek.svg" alt="Bpk. Trisnoto S.PD., M.M." className="kepsek-img" />
+                <img src="/kepsek.svg" alt="Bpk. Trisnoto S.PD., M.M." className="kepsek-img" />
                 <div className="name-badge">
                     <strong>Trisnoto S.PD., M.M.</strong>
                 </div>
@@ -82,7 +82,7 @@ export default function Home() {
             {/* BUNGKUS KARTU PERTAMA */}
             <ScrollReveal>
                 <div className="card-hijau-muda">
-                    <img src="/src/assets/icon-gear.svg" alt="Icon" />
+                    <img src="/icon-gear.svg" alt="Icon" />
                     <h3>KELAS KETERAMPILAN</h3>
                     <p>Kelas Keterampilan adalah kelas yang menawarkan pembelajaran praktis...</p>
                 </div>
@@ -91,7 +91,7 @@ export default function Home() {
             {/* BUNGKUS KARTU KEDUA */}
             <ScrollReveal>
                 <div className="card-hijau-muda">
-                    <img src="/src/assets/icon-person.svg" alt="Icon" />
+                    <img src="/icon-person.svg" alt="Icon" />
                     <h3>KELAS KEDINASAN</h3>
                     <p>Kelas Persiapan Kedinasan merupakan program pembelajaran...</p>
                 </div>
@@ -157,7 +157,7 @@ export default function Home() {
                         <div key={kabar.id} style={{ flex: '0 0 350px' }}> 
                             <ScrollReveal>
                                 <div className="card-polaroid">
-                                    <img src="/src/assets/berita1.jpg" alt={kabar.judul}/>
+                                    <img src="/berita1.jpg" alt={kabar.judul}/>
                                     <div className="konten-berita">
                                         <small>KABAR MADRASAH</small>
                                         <h4>{kabar.judul}</h4>

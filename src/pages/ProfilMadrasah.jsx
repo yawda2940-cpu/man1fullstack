@@ -7,7 +7,7 @@ export default function ProfilMadrasah() {
             <div className="profil-container">
                 <div className="profil-kiri">
                     {/* Pastikan path gambar disesuaikan jika foldernya berbeda */}
-                    <img src="/src/assets/gedung.svg" alt="Gedung MAN 1 Kota Madiun" />
+                    <img src="/gedung.svg" alt="Gedung MAN 1 Kota Madiun" />
                 </div>
                 
                 <div className="profil-kanan">
@@ -26,13 +26,13 @@ export default function ProfilMadrasah() {
             <div className="visi-misi-grid">
                 <div className="card-outline">
                     <div className="icon-kotak"></div> <h3>VISI</h3>
-                        <img src="/src/assets/icon-visi.svg" alt="Icon Visi" />
+                        <img src="/icon-visi.svg" alt="Icon Visi" />
                     <p className="teks-visi">Terwujudnya siswa yang berjiwa islami, unggul, terampil dan berakhlakul karimah.</p>
                 </div>
                 
                 <div className="card-outline">
                     <div className="icon-kotak"></div> <h3>MISI</h3>
-                        <img src="/src/assets/icon-misi.svg" alt="Icon Misi" />
+                        <img src="/icon-misi.svg" alt="Icon Misi" />
                     <ol className="misi-list">
                         <li>Melaksanakan program penghayatan dan pengamalan ajaran Islam dalam kehidupan sehari-hari.</li>
                         <li>Mengembangkan potensi akademik siswa secara optimal sesuai dengan minat bakat melalui proses pembelajaran.</li>
@@ -56,35 +56,35 @@ export default function ProfilMadrasah() {
             
             <div className="sarpras-grid">
                 <div className="card-sarpras">
-                    <img src="/src/assets/gedung.svg" alt="Lab Multimedia" />
+                    <img src="/gedung.svg" alt="Lab Multimedia" />
                     <h4>LAB MULTIMEDIA</h4>
                 </div>
                 <div className="card-sarpras">
-                    <img src="/src/assets/gedung.svg" alt="Lab Desain Grafis" />
+                    <img src="/gedung.svg" alt="Lab Desain Grafis" />
                     <h4>LAB DESAIN GRAFIS</h4>
                 </div>
                 <div className="card-sarpras">
-                    <img src="/src/assets/gedung.svg" alt="Lapangan" />
+                    <img src="/gedung.svg" alt="Lapangan" />
                     <h4>LAPANGAN</h4>
                 </div>
                 <div className="card-sarpras">
-                    <img src="/src/assets/gedung.svg" alt="Ruangan Kelas" />
+                    <img src="/gedung.svg" alt="Ruangan Kelas" />
                     <h4>RUANGAN KELAS</h4>
                 </div>
                 <div className="card-sarpras">
-                    <img src="/src/assets/gedung.svg" alt="Lab Biologi" />
+                    <img src="/gedung.svg" alt="Lab Biologi" />
                     <h4>LAB BIOLOGI</h4>
                 </div>
                 <div className="card-sarpras">
-                    <img src="/src/assets/gedung.svg" alt="Lab Fisika" />
+                    <img src="/gedung.svg" alt="Lab Fisika" />
                     <h4>LAB FISIKA</h4>
                 </div>
                 <div className="card-sarpras">
-                    <img src="/src/assets/gedung.svg" alt="Lab Kimia" />
+                    <img src="/gedung.svg" alt="Lab Kimia" />
                     <h4>LAB KIMIA</h4>
                 </div>
                 <div className="card-sarpras">
-                    <img src="/src/assets/gedung.svg" alt="Perpustakaan" />
+                    <img src="/gedung.svg" alt="Perpustakaan" />
                     <h4>PERPUSTAKAAN</h4>
                 </div>
             </div>
@@ -97,13 +97,13 @@ export default function ProfilMadrasah() {
             
             <div className="partner-grid">
                 <div className="card-partner">
-                    <img src="/src/assets/pnm.png" alt="Logo ITS Surabaya" className="logo-partner" />
+                    <img src="/pnm.png" alt="Logo ITS Surabaya" className="logo-partner" />
                     <h3>Institut Teknologi Sepuluh Nopember Surabaya</h3>
                     <p>Kolaborasi antara MAN 1 Kota Madiun dan Institut Teknologi Sepuluh Nopember (ITS) Surabaya adalah salah satu program unggulan madrasah yang paling menonjol. Kemitraan ini diwujudkan melalui PRODISTIK (Program Pendidikan Terapan Bidang Teknologi Informasi dan Komunikasi).</p>
                 </div>
                 
                 <div className="card-partner">
-                    <img src="/src/assets/pnm.png" alt="Logo Politeknik Negeri Madiun" className="logo-partner" />
+                    <img src="/pnm.png" alt="Logo Politeknik Negeri Madiun" className="logo-partner" />
                     <h3>Politeknik Negeri Madiun</h3>
                     <p>Kemitraan dengan Politeknik Negeri Madiun (PNM), kampus Anda sendiri, memiliki corak yang berbeda dari ITS dan lebih berfokus pada implementasi Tri Dharma Perguruan Tinggi, khususnya dalam pilar Pengabdian kepada Masyarakat (PKM) dan penelitian terapan.</p>
                 </div>

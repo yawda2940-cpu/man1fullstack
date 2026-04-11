@@ -7,7 +7,7 @@ export default function ProfilSambutan() {
             
             <div className="hero-image-wrapper">
                 {/* Pastikan path gambar ini sesuai dengan lokasi folder Anda */}
-                <img src="/src/assets/kepsek.svg" alt="Bpk. Trisnoto S.PD., M.M." className="kepsek-img" />
+                <img src="/kepsek.svg" alt="Bpk. Trisnoto S.PD., M.M." className="kepsek-img" />
                 <div className="name-badge">
                     <strong>Trisnoto S.PD., M.M.</strong>
                 </div>

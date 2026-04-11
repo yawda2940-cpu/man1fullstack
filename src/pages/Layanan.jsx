@@ -121,7 +121,7 @@ export default function Layanan() {
             <div className="layanan-container align-start">
                 <div className="layanan-kiri img-container">
                     {/* Path gambar diperbaiki dan ditutup */}
-                    <img src="/src/assets/alurlegalisir.png" alt="Alur Layanan Legalisir Online" className="img-alur" />
+                    <img src="/alurlegalisir.png" alt="Alur Layanan Legalisir Online" className="img-alur" />
                 </div>
                 
                 <div className="layanan-kanan">
