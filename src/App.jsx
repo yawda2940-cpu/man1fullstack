@@ -6,14 +6,6 @@ import Admin from './pages/Admin';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop'; // 1. IMPORT OBAT SCROLL-NYA DI SINI
 
-
-import './assets/index.css';
-import './assets/kontak.css';
-import './assets/layanan.css';
-import './assets/ppdb.css';
-import './assets/profil.css';
-import './assets/program.css';
-
 import Home from './pages/Home';
 import Kontak from './pages/Kontak';
 import ProfilSambutan from './pages/ProfilSambutan';
