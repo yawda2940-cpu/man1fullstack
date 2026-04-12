@@ -8,7 +8,7 @@ export default function Header() {
         <header>
             <Link to="/" className="logo-container" style={{ textDecoration: 'none', color: 'inherit' }}>
                 {/* Di React, path gambar dipanggil sesuai strukturnya dari file ini */}
-                <img src="/src/assets/logo.svg" alt="Logo MAN 1 Madiun" />
+                <img src="/logo.svg" alt="Logo MAN 1 Madiun" />
                 <div>
                     <h3>MAN 1 KOTA MADIUN</h3>
                     <small>Gali Potensi Raih Prestasi</small>
