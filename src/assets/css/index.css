@@ -172,7 +172,7 @@ nav ul li a:hover {
     padding: 20px 100px;
     border-radius: 100px; 
     position: absolute;
-    bottom: 40px; /* Kita tarik ke bawah sedikit agar pas di tengah garis potongan gambar */
+    bottom: 1px; /* Kita tarik ke bawah sedikit agar pas di tengah garis potongan gambar */
     z-index: 10; /* SANGAT PENTING: Memaksa nama selalu berada DI ATAS gambar (Layer 10) */
     font-size: 2.0rem;
     box-shadow: 0 8px 15px rgba(0,0,0,0.5);
@@ -325,10 +325,11 @@ nav ul li a:hover {
 /* Memaksa card berjajar 3 ke samping */
 .wadah-berita-3 {
     display: flex !important;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 30px;
     max-width: 1100px;
     margin: 0 auto;
+    padding: 15px 5px;
 }
 
 /* Membuat efek card putih bingkai Polaroid */
@@ -341,6 +342,9 @@ nav ul li a:hover {
     flex-direction: column;
     box-shadow: 0 10px 20px rgba(0,0,0,0.15);
     transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+
+    height: 420px !important; 
+    min-height: 420px !important;
 }
 
 /* Efek saat cursor diarahkan ke card */
@@ -356,6 +360,7 @@ nav ul li a:hover {
     border-radius: 8px; /* Ujung foto sedikit melengkung */
     margin-bottom: 15px;
 }
+
 
 .konten-berita {
     display: flex;

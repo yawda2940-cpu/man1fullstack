@@ -7,88 +7,116 @@ export default function Kontak() {
         <section className="kontak-hero">
             <div className="judul-section text-center">
                 {/* Judul dan Subjudul yang lebih elegan */}
-                <h2 style={{ color: 'white' }}>LAYANAN INFORMASI & KONTAK</h2>
-                <p style={{ color: 'white', maxWidth: '700px', margin: '0 auto' }}>
+                <h2 style={{ color: 'white', marginBottom: '15px' }}>LAYANAN INFORMASI & KONTAK</h2>
+                <p style={{ color: 'white', maxWidth: '700px', margin: '0 auto', lineHeight: '1.6' }}>
                     Kami siap melayani kebutuhan informasi Anda. Silakan hubungi saluran komunikasi resmi kami atau kunjungi langsung MAN 1 Kota Madiun pada jam layanan operasional.
                 </p>
             </div>
 
-            <div className="layanan-container">
+            <div className="layanan-container" style={{ display: 'flex', flexWrap: 'wrap', gap: '30px', maxWidth: '1100px', margin: '40px auto 0' }}>
                 
                 {/* BAGIAN KIRI: GOOGLE MAPS */}
-                <div className="layanan-kiri">
-                    <div className="form-box" style={{ padding: '20px', height: '100%', display: 'flex', flexDirection: 'column' }}>
-                        <h3 style={{ marginBottom: '15px', color: '#17521b' }}>Peta Lokasi Madrasah</h3>
+                <div className="layanan-kiri" style={{ flex: '1 1 400px' }}>
+                    <div className="card-kontak" style={{ backgroundColor: 'white', padding: '25px', borderRadius: '15px', boxShadow: '0 10px 30px rgba(0,0,0,0.08)', height: '100%', display: 'flex', flexDirection: 'column' }}>
+                        <h3 style={{ marginBottom: '20px', color: '#17521b', borderBottom: '2px solid #e9f5ed', paddingBottom: '10px' }}>Peta Lokasi Madrasah</h3>
                         
                         <iframe 
-                            src="https://maps.google.com/maps?q=MAN+1+Kota+Madiun&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3954.673898696805!2d111.53509131525413!3d-7.610411894511993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e79bfacc6d9aebb%3A0x8e82b7b51b4d008!2sMAN%201%20Kota%20Madiun!5e0!3m2!1sen!2sid!4v1680000000000!5m2!1sen!2sid" 
                             width="100%" 
-                            height="280" 
-                            style={{ border: 0, borderRadius: '8px', flexGrow: 1 }} 
+                            height="300" 
+                            style={{ border: 0, borderRadius: '10px', flexGrow: 1 }} 
                             allowFullScreen="" 
                             loading="lazy" 
                             referrerPolicy="no-referrer-when-downgrade"
                             title="Peta Lokasi MAN 1 Kota Madiun"
                         ></iframe>
 
-                        <div style={{ textAlign: 'center', marginTop: '15px' }}>
+                        <div style={{ textAlign: 'center', marginTop: '20px' }}>
                             <a 
-                                href="https://maps.app.goo.gl/ko8QczGUdS9NqW9S9" 
+                                href="https://maps.app.goo.gl/dummy-link-man1madiun" 
                                 target="_blank" 
                                 rel="noopener noreferrer"
                                 style={{
                                     display: 'inline-block',
-                                    padding: '10px 20px',
-                                    backgroundColor: '#f1c40f',
-                                    color: '#1b5e20',
+                                    padding: '12px 25px',
+                                    backgroundColor: '#1b5e20', // Warna diubah jadi hijau utama
+                                    color: '#ffffff',
                                     textDecoration: 'none',
-                                    borderRadius: '5px',
+                                    borderRadius: '8px',
                                     fontWeight: 'bold',
-                                    boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
+                                    boxShadow: '0 4px 15px rgba(27, 94, 32, 0.3)',
+                                    transition: 'all 0.3s ease'
                                 }}
                             >
-                                📍 Buka di Google Maps
+                                Buka di Google Maps
                             </a>
                         </div>
                     </div>
                 </div>
 
-                {/* BAGIAN KANAN: INFORMASI KONTAK */}
-                <div className="layanan-kanan">
-                    <div className="form-box" style={{ padding: '30px', height: '100%' }}>
-                        <h3 style={{ marginBottom: '20px', color: '#1b5e20' }}>Saluran Komunikasi Resmi</h3>
+              {/* BAGIAN KANAN: INFORMASI KONTAK */}
+                <div className="layanan-kanan" style={{ flex: '1 1 400px' }}>
+                    <div className="card-kontak" style={{ padding: '30px', borderRadius: '15px', height: '100%' }}>
+                        <h3 style={{ marginBottom: '25px', color: '#17521b', borderBottom: '2px solid rgba(255,255,255,0.3)', paddingBottom: '10px', textAlign: 'center' }}>
+                            Saluran Komunikasi Resmi
+                        </h3>
                         
-                        <ul style={{ listStyle: 'none', padding: 0, lineHeight: '1.8' }}>
-                            <li style={{ marginBottom: '15px' }}>
-                                <strong style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                                    <span style={{ fontSize: '1.2rem' }}>📍</span> Alamat Madrasah:
-                                </strong>
-                                <p style={{ marginLeft: '30px', marginTop: '5px', color: '#444' }}>
-                                    Jl. Raya Ponorogo - Madiun No.68 B, Demangan,<br />
-                                    Kec. Taman, Kota Madiun, Jawa Timur 63136
-                                </p>
+                        {/* KUNCI MUTLAK: Kita paksa list ini rata kiri! */}
+                        <ul style={{ listStyle: 'none', padding: 0, textAlign: 'left' }}>
+                            
+                            {/* ITEM 1: ALAMAT */}
+                            <li style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start', gap: '15px', marginBottom: '25px', textAlign: 'left' }}>
+                                <div style={{ backgroundColor: 'white', width: '45px', height: '45px', borderRadius: '50%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexShrink: 0, fontSize: '1.2rem', boxShadow: '0 2px 10px rgba(0,0,0,0.1)' }}>
+                                    📍
+                                </div>
+                                <div style={{ textAlign: 'left', display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+                                    <h4 style={{ margin: '0 0 5px 0', color: '#17521b', fontSize: '1.05rem', textAlign: 'left' }}>Alamat Madrasah</h4>
+                                    <p style={{ margin: 0, color: '#333', lineHeight: '1.6', fontSize: '0.95rem', textAlign: 'left' }}>
+                                        Jl. Raya Ponorogo - Madiun No.68 B, Demangan,<br />
+                                        Kec. Taman, Kota Madiun, Jawa Timur 63136
+                                    </p>
+                                </div>
                             </li>
                             
-                            <li style={{ marginBottom: '15px' }}>
-                                <strong style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                                    <span style={{ fontSize: '1.2rem' }}>📞</span> Layanan Telepon:
-                                </strong>
-                                <p style={{ marginLeft: '30px', marginTop: '5px', color: '#444' }}>(0351) 455477</p>
+                            {/* ITEM 2: TELEPON */}
+                            <li style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start', gap: '15px', marginBottom: '25px', textAlign: 'left' }}>
+                                <div style={{ backgroundColor: 'white', width: '45px', height: '45px', borderRadius: '50%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexShrink: 0, fontSize: '1.2rem', boxShadow: '0 2px 10px rgba(0,0,0,0.1)' }}>
+                                    📞
+                                </div>
+                                <div style={{ textAlign: 'left', display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+                                    <h4 style={{ margin: '0 0 5px 0', color: '#17521b', fontSize: '1.05rem', textAlign: 'left' }}>Layanan Telepon</h4>
+                                    <p style={{ margin: 0, color: '#333', lineHeight: '1.6', fontSize: '0.95rem', textAlign: 'left' }}>
+                                        (0351) 455477
+                                    </p>
+                                </div>
                             </li>
                             
-                            <li style={{ marginBottom: '15px' }}>
-                                <strong style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                                    <span style={{ fontSize: '1.2rem' }}>✉️</span> Surat Elektronik (Email):
-                                </strong>
-                                <p style={{ marginLeft: '30px', marginTop: '5px', color: '#444' }}>humas@man1kotamadiun.sch.id</p>
+                            {/* ITEM 3: EMAIL */}
+                            <li style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start', gap: '15px', marginBottom: '25px', textAlign: 'left' }}>
+                                <div style={{ backgroundColor: 'white', width: '45px', height: '45px', borderRadius: '50%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexShrink: 0, fontSize: '1.2rem', boxShadow: '0 2px 10px rgba(0,0,0,0.1)' }}>
+                                    ✉️
+                                </div>
+                                <div style={{ textAlign: 'left', display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+                                    <h4 style={{ margin: '0 0 5px 0', color: '#17521b', fontSize: '1.05rem', textAlign: 'left' }}>Surat Elektronik (Email)</h4>
+                                    <p style={{ margin: 0, color: '#333', lineHeight: '1.6', fontSize: '0.95rem', textAlign: 'left' }}>
+                                        humas@man1kotamadiun.sch.id
+                                    </p>
+                                </div>
                             </li>
 
-                            <li style={{ marginBottom: '15px' }}>
-                                <strong style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                                    <span style={{ fontSize: '1.2rem' }}>🕒</span> Jam Pelayanan Operasional:
-                                </strong>
-                                <p style={{ marginLeft: '30px', marginTop: '5px', color: '#444' }}>Senin - Jumat: 06.30 - 15.30 WIB</p>
+                            {/* ITEM 4: JAM OPERASIONAL */}
+                            <li style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start', gap: '15px', textAlign: 'left' }}>
+                                <div style={{ backgroundColor: 'white', width: '45px', height: '45px', borderRadius: '50%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexShrink: 0, fontSize: '1.2rem', boxShadow: '0 2px 10px rgba(0,0,0,0.1)' }}>
+                                    🕒
+                                </div>
+                                <div style={{ textAlign: 'left', display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+                                    <h4 style={{ margin: '0 0 5px 0', color: '#17521b', fontSize: '1.05rem', textAlign: 'left' }}>Jam Pelayanan Operasional</h4>
+                                    <p style={{ margin: 0, color: '#333', lineHeight: '1.6', fontSize: '0.95rem', textAlign: 'left' }}>
+                                        Senin - Jumat: 06.30 - 15.30 WIB
+                                    </p>
+                                </div>
                             </li>
+
                         </ul>
                     </div>
                 </div>

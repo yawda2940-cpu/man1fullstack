@@ -33,7 +33,7 @@
 /* Desain Card Gradient Kontak */
 .card-kontak {
     /* Gradien dari Hijau Tua ke Hijau Muda sesuai mockup */
-    background: linear-gradient(180deg, #1b6338 0%, #76d79e 100%) !important;
+    background: linear-gradient(180deg, #62b471 100%, #76d79e 0%) !important;
     border-radius: 20px !important;
     padding: 40px 20px !important;
     text-align: center;
@@ -95,7 +95,7 @@
 
 /* --- 2. LOKASI MADRASAH & PETA --- */
 .lokasi-section {
-    background-color: #2c8c56 !important; /* Warna hijau khas MAN 1 */
+    background-color: #174d2e !important; /* Warna hijau khas MAN 1 */
     padding: 80px 5% 100px 5%;
 }
 
