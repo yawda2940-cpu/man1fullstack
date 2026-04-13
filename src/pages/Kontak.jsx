@@ -21,7 +21,7 @@ export default function Kontak() {
                         <h3 style={{ marginBottom: '20px', color: '#17521b', borderBottom: '2px solid #e9f5ed', paddingBottom: '10px' }}>Peta Lokasi Madrasah</h3>
                         
                         <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3954.673898696805!2d111.53509131525413!3d-7.610411894511993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e79bfacc6d9aebb%3A0x8e82b7b51b4d008!2sMAN%201%20Kota%20Madiun!5e0!3m2!1sen!2sid!4v1680000000000!5m2!1sen!2sid" 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3995.458249393927!2d111.52135567505073!3d-7.654310692361998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e79be60bd524f03%3A0x8ab85146a323abbd!2sMadrasah%20Aliyah%20Negeri%201%20Kota%20Madiun!5e1!3m2!1sen!2sid!4v1776061652573!5m2!1sen!2sid" 
                             width="100%" 
                             height="300" 
                             style={{ border: 0, borderRadius: '10px', flexGrow: 1 }} 
