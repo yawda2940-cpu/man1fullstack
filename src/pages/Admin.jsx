@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
-import { onAuthStateChanged, signOut, GoogleAuthProvider, signInWithRedirect } from 'firebase/auth';
+import { onAuthStateChanged, signOut, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { db, auth } from '../firebase'; 
 
 export default function Admin() {
@@ -36,7 +36,7 @@ export default function Admin() {
         setLoginError('');
         const provider = new GoogleAuthProvider();
         try {
-            await signInWithRedirect(auth, provider);;
+            await signInWithPopup(auth, provider);;
         } catch (error) {
             setLoginError('❌ Gagal login dengan Google.');
         }
