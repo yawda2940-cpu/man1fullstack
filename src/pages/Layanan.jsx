@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { db } from '../firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import ScrollReveal from '../components/ScrollReveal';
 
 export default function Layanan() {
     // ==========================================
@@ -42,7 +43,7 @@ export default function Layanan() {
             console.error(error);
             setStatus('❌ Gagal mengirim pesan. Coba lagi nanti.');
         }
-    }; // <--- INI PENUTUP YANG SEBELUMNYA HILANG
+    }; // 
 
     // ==========================================
     // 4. FUNGSI KIRIM PENELITIAN
@@ -65,7 +66,7 @@ export default function Layanan() {
         } catch (error) {
             setPenStatus('❌ Gagal mengirim. Pastikan koneksi internet stabil.');
         }
-    }; // <--- CUKUP 1 PENUTUP (Sebelumnya kelebihan 3 kali)
+    }; 
 
     // ==========================================
     // 5. RENDER UI (JSX)
@@ -79,20 +80,23 @@ export default function Layanan() {
                 </div>
                 <div className="layanan-container">
                     <div className="layanan-kiri">
-                        <p>Terima kasih telah mengunjungi halaman Layanan Pengaduan kami.</p>
-                        <p>Formulir ini disediakan untuk memfasilitasi masyarakat dalam menyampaikan keluhan, saran, atau masukan terkait pelayanan yang kami berikan.</p>
-                        <p>Silakan isi data dan uraikan pengaduan Anda dengan jelas dan lengkap agar kami dapat menindaklanjutinya secara tepat dan cepat.</p>
-                        <p>Setiap laporan akan kami rahasiakan dan digunakan semata-mata untuk kepentingan perbaikan pelayanan.</p>
-                        <p>🕒 Waktu Tanggapan: Maksimal 3-5 hari kerja setelah pengaduan diterima.<br />
+                        <ScrollReveal>
+                            <p>Terima kasih telah mengunjungi halaman Layanan Pengaduan kami.</p>
+                            <p>Formulir ini disediakan untuk memfasilitasi masyarakat dalam menyampaikan keluhan, saran, atau masukan terkait pelayanan yang kami berikan.</p>
+                            <p>Silakan isi data dan uraikan pengaduan Anda dengan jelas dan lengkap agar kami dapat menindaklanjutinya secara tepat dan cepat.</p>
+                            <p>Setiap laporan akan kami rahasiakan dan digunakan semata-mata untuk kepentingan perbaikan pelayanan.</p>
+                            <p>🕒 Waktu Tanggapan: Maksimal 3-5 hari kerja setelah pengaduan diterima.<br />
                         🙏 Terima kasih atas partisipasi Anda dalam membantu kami meningkatkan kualitas layanan.</p>
+                        </ScrollReveal>
                     </div>
                     
                     <div className="layanan-kanan">
-                        <div className="form-box">
-                            <form onSubmit={handleKirim}>
-                                <div className="form-grid-2">
-                                    <div className="input-group">
-                                        <label>Nama Lengkap</label>
+                        <ScrollReveal>
+                            <div className="form-box">
+                                <form onSubmit={handleKirim}>
+                                    <div className="form-grid-2">
+                                        <div className="input-group">
+                                            <label>Nama Lengkap</label>
                                         <input type="text" className="input-field" value={nama} onChange={(e) => setNama(e.target.value)} required />
                                     </div>
                                     <div className="input-group">
@@ -119,6 +123,7 @@ export default function Layanan() {
                                 {status && <p style={{ marginTop: '15px', color: status.includes('✅') ? 'green' : 'red', fontWeight: 'bold' }}>{status}</p>}
                             </form>
                         </div>
+                        </ScrollReveal>
                     </div>
                 </div>
             </section>
@@ -126,27 +131,34 @@ export default function Layanan() {
             {/* SECTION: IZIN PENELITIAN */}
             <section className="layanan-section bg-hijau-standar">
                 <div className="layanan-judul text-center">
-                    <h2>PENGAJUAN IZIN PENELITIAN</h2>
+                    <ScrollReveal>
+                        <h2>PENGAJUAN IZIN PENELITIAN</h2>
+                    </ScrollReveal>
                 </div>
                 <div className="layanan-container">
                     <div className="layanan-kiri">
-                        <p>Selamat datang di halaman Pengajuan Izin Penelitian.</p>
-                        <p>Halaman ini disediakan bagi mahasiswa yang ingin melakukan kegiatan penelitian di lingkungan MAN 1 Kota Madiun.</p>
-                        <p>Melalui sistem ini, Anda dapat mengajukan permohonan izin penelitian secara online, mudah, dan cepat. Pastikan Anda telah menyiapkan dokumen pendukung yang diperlukan, seperti:</p>
+                        <ScrollReveal>
+                            <p>Selamat datang di halaman Pengajuan Izin Penelitian.</p>
+                            <p>Halaman ini disediakan bagi mahasiswa yang ingin melakukan kegiatan penelitian di lingkungan MAN 1 Kota Madiun.</p>
+                            <p>Melalui sistem ini, Anda dapat mengajukan permohonan izin penelitian secara online, mudah, dan cepat. Pastikan Anda telah menyiapkan dokumen pendukung yang diperlukan, seperti:</p>
+                        
                         <ul className="layanan-list">
                             <li>Surat pengantar dari perguruan tinggi atau lembaga.</li>
                             <li>Identitas peneliti (Kartu Mahasiswa).</li>
                         </ul>
                         <p>Setiap permohonan akan diproses oleh petugas kami dalam waktu tertentu setelah semua berkas dinyatakan lengkap.</p>
                         <p>Kami berkomitmen untuk memberikan pelayanan yang transparan, efisien, dan profesional dalam mendukung kegiatan penelitian di berbagai bidang.</p>
+                    </ScrollReveal>
                     </div>
                     
+                    
                     <div className="layanan-kanan">
-                        <div className="form-box">
-                            <form onSubmit={handleKirimPenelitian}>
-                                <div className="form-grid-2">
-                                    <div className="input-group">
-                                        <label>Nama Lengkap Peneliti</label>
+                        <ScrollReveal>
+                            <div className="form-box">
+                                <form onSubmit={handleKirimPenelitian}>
+                                    <div className="form-grid-2">
+                                        <div className="input-group">
+                                            <label>Nama Lengkap Peneliti</label>
                                         <input type="text" className="input-field" value={penNama} onChange={(e) => setPenNama(e.target.value)} required />
                                     </div>
                                     <div className="input-group">
@@ -182,6 +194,7 @@ export default function Layanan() {
                                 {penStatus && <p style={{ marginTop: '15px', fontWeight: 'bold', color: penStatus.includes('✅') ? '#1b5e20' : '#d32f2f' }}>{penStatus}</p>}
                             </form>
                         </div>
+                        </ScrollReveal>
                     </div>
                 </div>
             </section>
@@ -189,14 +202,19 @@ export default function Layanan() {
             {/* SECTION: LEGALISIR ONLINE (Statis untuk sementara) */}
             <section className="layanan-section bg-hijau-gelap">
                 <div className="layanan-judul text-center">
+                    <ScrollReveal>
                     <h2>LAYANAN LEGALISIR ONLINE</h2>
+                    </ScrollReveal>
                 </div>
                 <div className="layanan-container align-start">
                     <div className="layanan-kiri img-container">
-                        <img src="/alurlegalisir.png" alt="Alur Layanan Legalisir Online" className="img-alur" />
+                        <ScrollReveal>
+                            <img src="/alurlegalisir.png" alt="Alur Layanan Legalisir Online" className="img-alur" />
+                        </ScrollReveal>
                     </div>
                     
                     <div className="layanan-kanan">
+                        <ScrollReveal>
                         <div className="form-box">
                             <form action="#">
                                 <div className="form-grid-2">
@@ -219,9 +237,10 @@ export default function Layanan() {
                                 </div>
                             </form>
                         </div>
+                    </ScrollReveal>
                     </div>
                 </div>
             </section>
         </main>
     );
-} // <--- INI PENUTUP FUNGSI UTAMA YANG SEBELUMNYA HILANG
+} 
