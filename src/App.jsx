@@ -5,7 +5,7 @@ import { AnimatePresence } from 'framer-motion';
 import Header from './components/Header';
 import Admin from './pages/Admin';
 import Footer from './components/Footer';
-import ScrollToTop from './components/ScrollToTop'; // 1. IMPORT OBAT SCROLL-NYA DI SINI
+import ScrollToTop from './components/ScrollToTop';
 
 import Home from './pages/Home';
 import Kontak from './pages/Kontak';
@@ -19,24 +19,20 @@ import PPDB from './pages/PPDB';
 import PageTransition from './components/PageTransition';
 import Kurikulum from './pages/Kurikulum';
 import Ekstrakurikuler from './pages/Ekstrakurikuler';
+import EkstrakurikulerDetail from './pages/EkstrakurikulerDetail';
 
 export default function App() {
   const location = useLocation();
   return (
     <>
-      {/* 2. PASANG OBAT SCROLL-NYA DI SINI (Di luar Routes agar selalu aktif) */}
       <ScrollToTop />
-      
       <Header />
       
-      {/* 5. Bungkus Routes dengan AnimatePresence */}
-      {/* mode="wait" artinya: tunggu halaman lama selesai menghilang, baru munculkan halaman baru */}
       <AnimatePresence mode="wait"> 
         <Routes location={location} key={location.pathname}>
 
           <Route path="/admin" element={<Admin />} />
 
-        {/* 6. Bungkus elemen halamannya dengan <PageTransition> */}
           <Route path="/" element={<PageTransition><Home /></PageTransition>} />
           <Route path="/kontak" element={<PageTransition><Kontak /></PageTransition>} />
           <Route path="/profil-sambutan" element={<PageTransition><ProfilSambutan /></PageTransition>} />
@@ -44,17 +40,18 @@ export default function App() {
           <Route path="/profil-guru" element={<PageTransition><ProfilGuru /></PageTransition>} />
           <Route path="/profil-tu" element={<PageTransition><ProfilTU /></PageTransition>} />
           <Route path="/kurikulum" element={<PageTransition><Kurikulum /></PageTransition>} />
-          <Route path="/ekstrakurikuler" element={<PageTransition><Ekstrakurikuler /></PageTransition>} />
           <Route path="/layanan" element={<PageTransition><Layanan /></PageTransition>} />
           <Route path="/ppdb" element={<PageTransition><PPDB /></PageTransition>} />
+          <Route path="/program" element={<PageTransition><Program /></PageTransition>} />
+
+          {/* Rute Induk & Dinamis Ekstrakurikuler */}
+          <Route path="/ekstrakurikuler" element={<PageTransition><Ekstrakurikuler /></PageTransition>} />
+          <Route path="/ekstrakurikuler/:id" element={<PageTransition><EkstrakurikulerDetail /></PageTransition>} />
 
         </Routes>
       </AnimatePresence>
 
-    <Analytics />
-
-    
-
+      <Analytics />
       <Footer />
     </>
   )
