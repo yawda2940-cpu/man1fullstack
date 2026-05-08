@@ -230,7 +230,7 @@ export default function Home() {
                                                         className="read-more"
                                                         aria-label={`Baca selengkapnya tentang ${kabar.judul} di Instagram`}
                                                     >
-                                                        Read More
+                                                        read more
                                                     </a>
                                                     {/* ========================================================================= */}
                                                     
