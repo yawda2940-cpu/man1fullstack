@@ -2,6 +2,8 @@ import React from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom'; 
 import { Analytics } from "@vercel/analytics/react";
 import { AnimatePresence } from 'framer-motion';
+import { Helmet } from 'react-helmet-async'; // <--- 1. TAMBAHKAN IMPORT HELMET INI
+
 import Header from './components/Header';
 import Admin from './pages/Admin';
 import Footer from './components/Footer';
@@ -25,6 +27,15 @@ export default function App() {
   const location = useLocation();
   return (
     <>
+      {/* =========================================
+          2. DEFAULT SEO (JARING PENGAMAN METADATA)
+      ========================================= */}
+      <Helmet>
+        <title>MAN 1 Kota Madiun | Madrasah Berprestasi & Berakhlak Mulia</title>
+        <meta name="description" content="Website Resmi MAN 1 Kota Madiun. Mewujudkan generasi madrasah yang berprestasi, berakhlak mulia, dan siap menghadapi tantangan global di era digital." />
+        <meta name="keywords" content="MAN 1 Madiun, Madrasah Aliyah Madiun, Sekolah Islam Madiun, PPDB MAN 1 Kota Madiun" />
+      </Helmet>
+
       <ScrollToTop />
       <Header />
       
