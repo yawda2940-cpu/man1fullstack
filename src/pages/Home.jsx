@@ -173,7 +173,6 @@ export default function Home() {
                     <div className="wadah-card-3" style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: '20px' }}>
                         <ScrollReveal>
                             <div className="card-hijau-muda">
-                                {/* PERUBAHAN SEO: ALT TEXT SPESIFIK */}
                                 <img src="/icon-gear.svg" alt="Ikon Kelas Keterampilan MAN 1 Madiun" width="50" height="50" />
                                 <h3>KELAS KETERAMPILAN</h3>
                                 <p>Pembelajaran praktis yang siap kerja dan berwirausaha.</p>
@@ -181,7 +180,6 @@ export default function Home() {
                         </ScrollReveal>
                         <ScrollReveal>
                             <div className="card-hijau-muda">
-                                {/* PERUBAHAN SEO: ALT TEXT SPESIFIK */}
                                 <img src="/icon-person.svg" alt="Ikon Kelas Kedinasan MAN 1 Madiun" width="50" height="50" />
                                 <h3>KELAS KEDINASAN</h3>
                                 <p>Persiapan intensif masuk IPDN, STAN, dan akademi militer.</p>
@@ -189,7 +187,6 @@ export default function Home() {
                         </ScrollReveal>
                         <ScrollReveal>
                             <div className="card-hijau-muda">
-                                {/* PERUBAHAN SEO: ALT TEXT SPESIFIK */}
                                 <img src="/icon-building.svg" alt="Ikon Bimbingan PTN MAN 1 Madiun" width="50" height="50" />
                                 <h3>BIMBINGAN PTN</h3>
                                 <p>Pendampingan khusus UTBK dan seleksi mandiri PTN.</p>
@@ -214,14 +211,29 @@ export default function Home() {
                                 <div key={kabar.id} style={{ flex: '0 0 350px' }}> 
                                     <ScrollReveal>
                                         <div className="card-polaroid">
-                                            <img src="/berita1.jpg" alt={kabar.judul} width="350" height="200" style={{ objectFit: 'cover' }} />
+                                            {/* PERUBAHAN SEO: Memperjelas atribut alt pada gambar berita */}
+                                            <img src="/berita1.jpg" alt={`Thumbnail berita: ${kabar.judul}`} width="350" height="200" style={{ objectFit: 'cover' }} />
                                             <div className="konten-berita">
                                                 <small>KABAR MADRASAH</small>
                                                 <h4>{kabar.judul}</h4>
                                                 <p style={{ fontSize: '0.85rem', color: '#666', marginBottom: '10px', display: '-webkit-box', WebkitLineClamp: '2', WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{kabar.isi}</p>
                                                 <div className="meta-berita">
                                                     <span className="tanggal auto-tanggal">{formatTanggal(kabar.tanggal)}</span>
-                                                    <a href="https://www.instagram.com/man1kotamadiun/" target="_blank" rel="noopener noreferrer" className="read-more">Read More</a>
+                                                    
+                                                    {/* ========================================================================= */}
+                                                    {/* SOLUSI SEO: Penambahan aria-label yang spesifik pada tautan Instagram ini */}
+                                                    {/* ========================================================================= */}
+                                                    <a 
+                                                        href="https://www.instagram.com/man1kotamadiun/" 
+                                                        target="_blank" 
+                                                        rel="noopener noreferrer" 
+                                                        className="read-more"
+                                                        aria-label={`Baca selengkapnya tentang ${kabar.judul} di Instagram`}
+                                                    >
+                                                        Read More
+                                                    </a>
+                                                    {/* ========================================================================= */}
+                                                    
                                                 </div>
                                             </div>
                                         </div>
