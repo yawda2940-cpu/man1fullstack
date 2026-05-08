@@ -221,7 +221,7 @@ export default function Home() {
                                                 <p style={{ fontSize: '0.85rem', color: '#666', marginBottom: '10px', display: '-webkit-box', WebkitLineClamp: '2', WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{kabar.isi}</p>
                                                 <div className="meta-berita">
                                                     <span className="tanggal auto-tanggal">{formatTanggal(kabar.tanggal)}</span>
-                                                    <a href="https://www.instagram.com/man1kotamadiun" target="_blank" rel="noopener noreferrer" className="read-more">Read More</a>
+                                                    <a href="https://www.instagram.com/man1kotamadiun/" target="_blank" rel="noopener noreferrer" className="read-more">Read More</a>
                                                 </div>
                                             </div>
                                         </div>
