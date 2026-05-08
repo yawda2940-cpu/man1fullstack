@@ -227,7 +227,7 @@ export default function Home() {
                                                         href="https://www.instagram.com/man1kotamadiun/" 
                                                         target="_blank" 
                                                         rel="noopener noreferrer" 
-                                                        className="read-more"
+                                                        className="more"
                                                         aria-label={`Baca selengkapnya tentang ${kabar.judul} di Instagram`}
                                                     >
                                                         read more
