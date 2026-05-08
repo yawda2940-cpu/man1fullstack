@@ -77,6 +77,8 @@ export default function Home() {
                 <title>Beranda | MAN 1 Kota Madiun - Madrasahnya Para Juara</title>
                 <meta name="description" content="Selamat datang di website resmi MAN 1 Kota Madiun. Kami mencetak generasi Islami yang unggul dalam teknologi, kompetitif dalam prestasi, dan kokoh dalam iman." />
                 
+                <link rel="canonical" href="https://man1kotamadiun.sch.id/" />
+
                 {/* Meta Tags untuk Social Media (Open Graph) */}
                 <meta property="og:title" content="Website Resmi MAN 1 Kota Madiun" />
                 <meta property="og:description" content="Mencetak generasi Islami yang unggul dalam teknologi, kompetitif dalam prestasi, dan kokoh dalam iman." />
