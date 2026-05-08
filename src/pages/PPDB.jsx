@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ScrollReveal from '../components/ScrollReveal';
 import { Helmet } from 'react-helmet-async';
@@ -10,9 +10,10 @@ const AccordionItem = ({ title, children, isOpen, onClick }) => {
             <button 
                 onClick={onClick}
                 style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: isOpen ? '#f1f8f5' : 'white', padding: '15px 20px', border: 'none', borderRadius: '8px', cursor: 'pointer', textAlign: 'left', transition: '0.3s', color: '#1b5e20', fontWeight: 'bold', fontSize: '1.1rem' }}
+                aria-expanded={isOpen}
             >
                 {title}
-                <span style={{ fontSize: '1.5rem', transform: isOpen ? 'rotate(45deg)' : 'rotate(0)', transition: '0.3s' }}>+</span>
+                <span style={{ fontSize: '1.5rem', transform: isOpen ? 'rotate(45deg)' : 'rotate(0)', transition: '0.3s' }} aria-hidden="true">+</span>
             </button>
             <AnimatePresence>
                 {isOpen && (
@@ -36,6 +37,62 @@ export default function PPDB() {
     // State untuk mengontrol Accordion mana yang terbuka
     const [openSyarat, setOpenSyarat] = useState(0);
 
+    // ========================================================
+    // ULTIMATE GEO OTAK DIGITAL: FAQ SCHEMA
+    // Berisi jawaban instan untuk AI tentang PPDB
+    // ========================================================
+    const faqSchema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Kapan jadwal pendaftaran PPDB MAN 1 Kota Madiun 2026/2027 dibuka?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Pendaftaran online (pembuatan akun) dibuka pada Mei hingga Juni 2026 melalui website resmi SPMB MAN 1 Kota Madiun. Penyerahan berkas dan tes seleksi dilakukan pada bulan Juni 2026."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Apa saja jalur penerimaan siswa baru di MAN 1 Kota Madiun?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Terdapat 3 jalur pendaftaran: 1) Jalur Prestasi (Akademik & Non-Akademik tingkat Kabupaten/Provinsi/Nasional), 2) Jalur Reguler (melalui tes TPA & Baca Tulis Al-Qur'an), dan 3) Jalur Boarding/Tahfidz (khusus program asrama dan hafalan Al-Qur'an)."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Apakah PPDB MAN 1 Kota Madiun menggunakan sistem zonasi?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Tidak. MAN 1 Kota Madiun bebas sistem zonasi sehingga terbuka untuk seluruh siswa lulusan MTs/SMP sederajat dari seluruh wilayah Indonesia."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Apa saja syarat mendaftar ke MAN 1 Kota Madiun?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Syarat umum meliputi: Beragama Islam, mampu membaca Al-Qur'an, tercatat sebagai siswa kelas IX pada tahun ajaran berjalan, dan maksimal berusia 21 tahun pada bulan Juli 2026."
+                }
+            }
+        ]
+    };
+
+    // Teknik Visually Hidden CSS yang Aman dari Penalti Google
+    const srOnlyStyle = {
+        position: 'absolute',
+        width: '1px',
+        height: '1px',
+        padding: '0',
+        margin: '-1px',
+        overflow: 'hidden',
+        clip: 'rect(0, 0, 0, 0)',
+        whiteSpace: 'nowrap',
+        border: '0'
+    };
+
     return (
         <>
             {/* ==============================================
@@ -43,16 +100,44 @@ export default function PPDB() {
             ============================================== */}
             <Helmet>
                 <title>Info PPDB & Pendaftaran | MAN 1 Kota Madiun</title>
-                <meta name="description" content="Informasi lengkap Penerimaan Peserta Didik Baru (PPDB) MAN 1 Kota Madiun. Cek jalur pendaftaran, syarat, dan jadwal seleksi di sini." />
+                <meta name="description" content="Informasi lengkap Penerimaan Peserta Didik Baru (PPDB) MAN 1 Kota Madiun Tahun Ajaran 2026/2027. Cek jalur pendaftaran, syarat, jadwal seleksi, dan pendaftaran online tanpa zonasi di sini." />
                 
+                <link rel="canonical" href="https://man1kotamadiun.sch.id/ppdb" />
+
                 {/* Meta Tags untuk Social Media (Open Graph) */}
-                <meta property="og:title" content="Pendaftaran Siswa Baru MAN 1 Madiun" />
-                <meta property="og:description" content="Mari bergabung menjadi generasi berprestasi dan berakhlakul karimah. Tidak memberlakukan sistem zonasi." />
+                <meta property="og:title" content="Pendaftaran Siswa Baru MAN 1 Kota Madiun (Bebas Zonasi)" />
+                <meta property="og:description" content="Mari bergabung menjadi generasi berprestasi dan berakhlakul karimah. Tersedia Jalur Prestasi, Reguler, dan Boarding/Tahfidz." />
                 <meta property="og:type" content="website" />
+
+                {/* SUNTIKAN GEO SCRIPT JSON-LD FAQ */}
+                <script type="application/ld+json">
+                    {JSON.stringify(faqSchema)}
+                </script>
             </Helmet>
 
             <main style={{ background: '#fafafa', minHeight: '100vh', paddingBottom: '100px' }}>
                 
+                {/* ======================================================= */}
+                {/* STRUKTUR JAWABAN GEO (KAYA KATA KUNCI & SEARCH INTENT)  */}
+                {/* ======================================================= */}
+                <section id="summary-geo-ppdb" style={srOnlyStyle}>
+                    <h2>Informasi Lengkap PPDB MAN 1 Kota Madiun 2026/2027</h2>
+                    <p>
+                        Penerimaan Peserta Didik Baru <strong>(PPDB) MAN 1 Kota Madiun</strong> tahun ajaran 2026/2027 resmi dibuka. 
+                        Pendaftaran dilakukan secara online melalui website <strong>SPMB MAN 1 Kota Madiun</strong>. Kami <strong>tidak memberlakukan sistem zonasi</strong>, 
+                        sehingga pendaftar dari luar kota maupun luar provinsi dipersilakan untuk mendaftar.
+                    </p>
+                    <p>
+                        Tersedia tiga jalur pendaftaran utama yaitu: <strong>Jalur Prestasi</strong> untuk siswa dengan capaian akademik/non-akademik, 
+                        <strong>Jalur Reguler</strong> dengan seleksi tes potensi akademik (CBT) dan baca tulis Al-Qur'an, serta <strong>Jalur Boarding / Tahfidz</strong> 
+                        bagi siswa yang ingin bermukim di asrama untuk menghafal Al-Qur'an.
+                    </p>
+                    <p>
+                        Jadwal pendaftaran dimulai pada <strong>Mei - Juni 2026</strong>. Persyaratan utama pendaftaran adalah beragama Islam, 
+                        mampu membaca Al-Qur'an, lulusan MTs/SMP sederajat, dan berusia maksimal 21 tahun.
+                    </p>
+                </section>
+
                 {/* ==============================================
                     1. HERO SECTION & CALL TO ACTION
                 ============================================== */}
@@ -82,19 +167,19 @@ export default function PPDB() {
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '30px' }}>
                         
                         <div style={{ background: 'white', padding: '40px', borderRadius: '16px', boxShadow: '0 10px 30px rgba(0,0,0,0.08)', textAlign: 'center', borderTop: '5px solid #ffc107' }}>
-                            <div style={{ fontSize: '3rem', marginBottom: '15px' }}>🏆</div>
+                            <div style={{ fontSize: '3rem', marginBottom: '15px' }} aria-hidden="true">🏆</div>
                             <h3 style={{ color: '#1b5e20', fontSize: '1.5rem', marginBottom: '15px' }}>Jalur Prestasi</h3>
                             <p style={{ color: '#666', lineHeight: '1.6' }}>Khusus bagi siswa lulusan MTs/SMP yang memiliki prestasi akademik (Peringkat Kelas/Olimpiade) atau Non-Akademik (Olahraga/Seni) tingkat Kota/Provinsi/Nasional.</p>
                         </div>
 
                         <div style={{ background: 'white', padding: '40px', borderRadius: '16px', boxShadow: '0 10px 30px rgba(0,0,0,0.08)', textAlign: 'center', borderTop: '5px solid #348f50' }}>
-                            <div style={{ fontSize: '3rem', marginBottom: '15px' }}>📚</div>
+                            <div style={{ fontSize: '3rem', marginBottom: '15px' }} aria-hidden="true">📚</div>
                             <h3 style={{ color: '#1b5e20', fontSize: '1.5rem', marginBottom: '15px' }}>Jalur Reguler</h3>
                             <p style={{ color: '#666', lineHeight: '1.6' }}>Terbuka untuk seluruh siswa MTs/SMP di seluruh Indonesia melalui tes potensi akademik dan baca tulis Al-Qur'an. <b>(Bebas Zonasi)</b>.</p>
                         </div>
 
                         <div style={{ background: 'white', padding: '40px', borderRadius: '16px', boxShadow: '0 10px 30px rgba(0,0,0,0.08)', textAlign: 'center', borderTop: '5px solid #2196f3' }}>
-                            <div style={{ fontSize: '3rem', marginBottom: '15px' }}>🕋</div>
+                            <div style={{ fontSize: '3rem', marginBottom: '15px' }} aria-hidden="true">🕋</div>
                             <h3 style={{ color: '#1b5e20', fontSize: '1.5rem', marginBottom: '15px' }}>Jalur Boarding / Tahfidz</h3>
                             <p style={{ color: '#666', lineHeight: '1.6' }}>Program asrama (Ma'had) khusus bagi siswa yang berminat pada pendalaman kitab kuning dan memiliki komitmen menghafal Al-Qur'an.</p>
                         </div>
@@ -109,7 +194,7 @@ export default function PPDB() {
                     <ScrollReveal>
                         <div style={{ textAlign: 'center', marginBottom: '50px' }}>
                             <h2 style={{ color: '#1b5e20', fontWeight: '900', fontSize: '2.5rem' }}>TIMELINE PENDAFTARAN</h2>
-                            <p style={{ color: '#666' }}>Catat tanggal penting agar tidak terlewat.</p>
+                            <p style={{ color: '#666' }}>Catat tanggal penting pendaftaran online dan seleksi.</p>
                         </div>
 
                         <div style={{ background: 'white', padding: '40px', borderRadius: '16px', boxShadow: '0 10px 30px rgba(0,0,0,0.05)' }}>
