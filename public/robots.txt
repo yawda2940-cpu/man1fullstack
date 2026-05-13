@@ -1,2 +1,29 @@
+# ==========================================
+# SURAT IZIN MASUK ROBOT (MAN 1 KOTA MADIUN)
+# ==========================================
+
+# 1. MENGIZINKAN SEMUA MESIN PENCARI KLASIK (Google, Bing, Yahoo)
 User-agent: *
 Allow: /
+
+# 2. MENGUNDANG BOT KECERDASAN BUATAN (GEO OPTIMIZATION)
+# Mengizinkan bot OpenAI (ChatGPT)
+User-agent: GPTBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+
+# Mengizinkan bot Anthropic (Claude)
+User-agent: anthropic-ai
+Allow: /
+
+# Mengizinkan bot Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+
+# Mengizinkan bot Common Crawl (Database utama banyak LLM)
+User-agent: CCBot
+Allow: /
+
+# 3. MEMBERIKAN DENAH LOKASI (SITEMAP)
+Sitemap: https://man1fullstack.vercel.app/sitemap.xml
