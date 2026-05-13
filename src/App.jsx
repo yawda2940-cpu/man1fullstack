@@ -8,6 +8,7 @@ import Header from './components/Header';
 import Admin from './pages/Admin';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import ChatbotWidget from './components/ChatbotWidget';
 
 import Home from './pages/Home';
 import Kontak from './pages/Kontak';
@@ -28,12 +29,29 @@ export default function App() {
   return (
     <>
       {/* =========================================
-          2. DEFAULT SEO (JARING PENGAMAN METADATA)
+          2. DEFAULT SEO & OPEN GRAPH (JARING PENGAMAN)
       ========================================= */}
       <Helmet>
+        <html lang="id" />
         <title>MAN 1 Kota Madiun | Madrasah Berprestasi & Berakhlak Mulia</title>
-        <meta name="description" content="Website Resmi MAN 1 Kota Madiun. Mewujudkan generasi madrasah yang berprestasi, berakhlak mulia, dan siap menghadapi tantangan global di era digital." />
-        <meta name="keywords" content="MAN 1 Madiun, Madrasah Aliyah Madiun, Sekolah Islam Madiun, PPDB MAN 1 Kota Madiun" />
+        <meta name="description" content="Website Resmi MAN 1 Kota Madiun. Mewujudkan generasi madrasah yang berprestasi, berakhlak mulia, dan siap menghadapi tantangan global di era digital. Bebas zonasi." />
+        <meta name="keywords" content="MAN 1 Madiun, Madrasah Aliyah Madiun, Sekolah Islam Madiun, PPDB MAN 1 Kota Madiun, SMA Islam Terbaik" />
+        
+        {/* Open Graph / Facebook / WhatsApp */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://man1fullstack.vercel.app/" />
+        <meta property="og:title" content="Pendaftaran PPDB MAN 1 Kota Madiun" />
+        <meta property="og:description" content="Bergabunglah dengan MAN 1 Kota Madiun. Bebas sistem zonasi, tersedia program Boarding/Tahfidz dan Kelas Keterampilan." />
+        <meta property="og:image" content="https://man1fullstack.vercel.app/gedung.png" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://man1fullstack.vercel.app/" />
+        <meta name="twitter:title" content="MAN 1 Kota Madiun | Madrasah Hebat Bermartabat" />
+        <meta name="twitter:description" content="Pendaftaran siswa baru MAN 1 Kota Madiun telah dibuka. Dapatkan informasi lengkap syarat dan jadwal di sini." />
+        <meta name="twitter:image" content="https://man1fullstack.vercel.app/gedung.png" />
+        
+        <link rel="canonical" href="https://man1fullstack.vercel.app/" />
       </Helmet>
 
       <ScrollToTop />
@@ -63,6 +81,9 @@ export default function App() {
       </AnimatePresence>
 
       <Analytics />
+
+        <ChatbotWidget />
+
       <Footer />
     </>
   )
