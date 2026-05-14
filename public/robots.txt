@@ -26,4 +26,4 @@ User-agent: CCBot
 Allow: /
 
 # 3. MEMBERIKAN DENAH LOKASI (SITEMAP)
-Sitemap: https://man1fullstack.vercel.app/sitemap.xml
+Sitemap: https://man1kotamadiun.vercel.app/sitemap.xml

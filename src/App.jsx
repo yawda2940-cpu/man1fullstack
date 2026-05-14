@@ -39,19 +39,19 @@ export default function App() {
         
         {/* Open Graph / Facebook / WhatsApp */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://man1fullstack.vercel.app/" />
+        <meta property="og:url" content="https://man1kotamadiun.vercel.app/" />
         <meta property="og:title" content="Pendaftaran PPDB MAN 1 Kota Madiun" />
         <meta property="og:description" content="Bergabunglah dengan MAN 1 Kota Madiun. Bebas sistem zonasi, tersedia program Boarding/Tahfidz dan Kelas Keterampilan." />
-        <meta property="og:image" content="https://man1fullstack.vercel.app/gedung.png" />
+        <meta property="og:image" content="https://man1kotamadiun.vercel.app/gedung.png" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content="https://man1fullstack.vercel.app/" />
+        <meta name="twitter:url" content="https://man1kotamadiun.vercel.app/" />
         <meta name="twitter:title" content="MAN 1 Kota Madiun | Madrasah Hebat Bermartabat" />
         <meta name="twitter:description" content="Pendaftaran siswa baru MAN 1 Kota Madiun telah dibuka. Dapatkan informasi lengkap syarat dan jadwal di sini." />
-        <meta name="twitter:image" content="https://man1fullstack.vercel.app/gedung.png" />
+        <meta name="twitter:image" content="https://man1kotamadiun.vercel.app/gedung.png" />
         
-        <link rel="canonical" href="https://man1fullstack.vercel.app/" />
+        <link rel="canonical" href="https://man1kotamadiun.vercel.app/" />
       </Helmet>
 
       <ScrollToTop />
