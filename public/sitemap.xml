@@ -3,53 +3,53 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://man1fullstack.vercel.app/</loc>
+    <loc>https://man1kotamadiun.vercel.app/</loc>
     <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://man1fullstack.vercel.app/ppdb</loc>
+    <loc>https://man1kotamadiun.vercel.app/ppdb</loc>
     <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://man1fullstack.vercel.app/kurikulum</loc>
+    <loc>https://man1kotamadiun.vercel.app/kurikulum</loc>
     <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://man1fullstack.vercel.app/program</loc>
+    <loc>https://man1kotamadiun.vercel.app/program</loc>
     <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://man1fullstack.vercel.app/profil/madrasah</loc>
+    <loc>https://man1kotamadiun.vercel.app/profil/madrasah</loc>
     <lastmod>2026-05-10</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://man1fullstack.vercel.app/ekstrakurikuler</loc>
+    <loc>https://man1kotamadiun.vercel.app/ekstrakurikuler</loc>
     <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://man1fullstack.vercel.app/layanan</loc>
+    <loc>https://man1kotamadiun.vercel.app/layanan</loc>
     <lastmod>2026-05-10</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://man1fullstack.vercel.app/kontak</loc>
+    <loc>https://man1kotamadiun.vercel.app/kontak</loc>
     <lastmod>2026-05-10</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
