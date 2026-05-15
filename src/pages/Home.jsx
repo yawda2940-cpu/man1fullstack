@@ -5,6 +5,7 @@ import ScrollReveal from '../components/ScrollReveal';
 import { collection, onSnapshot, query, orderBy, limit } from 'firebase/firestore';
 import { db } from '../firebase';
 import { Helmet } from 'react-helmet-async';
+import SkeletonCard from '../components/SkeletonCard';
 
 // --- KOMPONEN KECIL UNTUK ANGKA BERGERAK ---
 const StatItem = ({ target, label, suffix = "" }) => {
@@ -41,6 +42,7 @@ const StatItem = ({ target, label, suffix = "" }) => {
 export default function Home() {
     const scrollRef = useRef(null);
     const isMobile = useIsMobile();
+    const [isLoading, setIsLoading] = useState(true);
     const [kabarMadrasah, setKabarMadrasah] = useState([]);
 
     const geser = (arah) => {
@@ -58,6 +60,10 @@ export default function Home() {
         const unsubscribe = onSnapshot(q, (snapshot) => {
             const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
             setKabarMadrasah(data);
+            setIsLoading(false);
+            }, (error) => {
+            console.error("Error fetching data: ", error);
+            setIsLoading(false); // Pastikan loading juga mati jika terjadi error (jaringan ngadat)
         });
         return () => unsubscribe();
     }, []);
@@ -168,8 +174,7 @@ export default function Home() {
                 {/* =========================================================
                     HOOK PERTAMA: BENTO GRID + HERO BACKGROUND
                 ========================================================= */}
-                <section className="hero" style={{ padding: '160px 5% 80px 5%', position: 'relative', display: 'block', width: '100%' }}>
-        
+                <section className="hero" style={{ padding: isMobile ? '100px 5% 60px 5%' : '160px 5% 80px 5%', position: 'relative', display: 'block', width: '100%' }}>
                     <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.6)', zIndex: 0 }}></div>
         
                         <div style={{ position: 'relative', zIndex: 1, width: '100%' }}>
@@ -302,39 +307,67 @@ export default function Home() {
                         <h2>KABAR MADRASAH</h2>
                         <p>Berita terbaru MAN 1 Kota Madiun</p>
                     </div>
-                    <div style={{ position: 'relative', maxWidth: '1200px', margin: '0 auto', padding: '0 50px' }}>
+                    <div style={{ position: 'relative', maxWidth: '1200px', margin: '0 auto', padding: isMobile ? '0 15px' : '0 50px' }}>
+                        
                         <button onClick={() => geser('kiri')} style={{ position: 'absolute', left: '0', top: '50%', transform: 'translateY(-50%)', zIndex: 10, background: '#1b5e20', color: 'white', border: 'none', borderRadius: '50%', width: '45px', height: '45px', cursor: 'pointer', boxShadow: '0 4px 10px rgba(0,0,0,0.2)', fontSize: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                             &#10094;
                         </button>
+                        
                         <div ref={scrollRef} className="wadah-berita-3" style={{ display: 'flex', overflowX: 'auto', gap: '30px', paddingBottom: '20px', scrollBehavior: 'smooth', WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                             <style>{`.wadah-berita-3::-webkit-scrollbar { display: none; }`}</style>
-                            {kabarMadrasah.map((kabar) => (
-                                <div key={kabar.id} style={{ flex: '0 0 350px' }}> 
-                                    <ScrollReveal>
-                                        <div className="card-polaroid">
-                                            <img src="/berita1.jpg" alt={`Thumbnail berita: ${kabar.judul}`} width="350" height="200" style={{ objectFit: 'cover' }} />
-                                            <div className="konten-berita">
-                                                <small>KABAR MADRASAH</small>
-                                                <h4>{kabar.judul}</h4>
-                                                <p style={{ fontSize: '0.85rem', color: '#666', marginBottom: '10px', display: '-webkit-box', WebkitLineClamp: '2', WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{kabar.isi}</p>
-                                                <div className="meta-berita">
-                                                    <span className="tanggal auto-tanggal">{formatTanggal(kabar.tanggal)}</span>
-                                                    <a 
-                                                        href="https://www.instagram.com/man1kotamadiun/" 
-                                                        target="_blank" 
-                                                        rel="noopener noreferrer" 
-                                                        className="read-more"
-                                                        aria-label={`Baca selengkapnya tentang ${kabar.judul} di Instagram`}
-                                                    >
-                                                        Read More
-                                                    </a>
+                            
+                            {/* ========================================================
+                                🔥 LOGIKA SKELETON LOADER DI SINI
+                            ======================================================== */}
+                            {isLoading ? (
+                                /* 1. JIKA MASIH LOADING */
+                                [1, 2, 3].map((item) => (
+                                    // 🔥 UBAH flex menjadi dinamis
+                                    <div key={`skeleton-${item}`} style={{ flex: isMobile ? '0 0 85vw' : '0 0 350px' }}>
+                                        <SkeletonCard />
+                                    </div>
+                                ))
+                            ) : (
+                                /* 2. JIKA LOADING SELESAI */
+                                kabarMadrasah.map((kabar) => (
+                                    // 🔥 UBAH flex menjadi dinamis
+                                    <div key={kabar.id} style={{ flex: isMobile ? '0 0 85vw' : '0 0 350px' }}> 
+                                        <ScrollReveal>
+                                            <div className="card-polaroid">
+                                                {/* 🔥 HAPUS width="350" pada img, gunakan CSS width: '100%' */}
+                                                <img 
+                                                    src="/berita1.jpg" 
+                                                    alt={`Thumbnail berita: ${kabar.judul}`} 
+                                                    loading="lazy" 
+                                                    decoding="async" 
+                                                    style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '4px' }} 
+                                                />
+                                                <div className="konten-berita">
+                                                    <small>KABAR MADRASAH</small>
+                                                    <h4>{kabar.judul}</h4>
+                                                    <p style={{ fontSize: '0.85rem', color: '#666', marginBottom: '10px', display: '-webkit-box', WebkitLineClamp: '2', WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{kabar.isi}</p>
+                                                    <div className="meta-berita">
+                                                        <span className="tanggal auto-tanggal">{formatTanggal(kabar.tanggal)}</span>
+                                                        <a 
+                                                            href="https://www.instagram.com/man1kotamadiun/" 
+                                                            target="_blank" 
+                                                            rel="noopener noreferrer" 
+                                                            className="read-more"
+                                                            aria-label={`Baca selengkapnya tentang ${kabar.judul} di Instagram`}
+                                                        >
+                                                            Read More
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </ScrollReveal>
-                                </div>
-                            ))}
+                                        </ScrollReveal>
+                                    </div>
+                                ))
+                            )}
+                            {/* ======================================================== */}
+                            
                         </div>
+
                         {!isMobile && (
                             <button onClick={() => geser('kanan')} style={{ position: 'absolute', right: '0', top: '50%', transform: 'translateY(-50%)', zIndex: 10, background: '#1b5e20', color: 'white', border: 'none', borderRadius: '50%', width: '45px', height: '45px', cursor: 'pointer', boxShadow: '0 4px 10px rgba(0,0,0,0.2)', fontSize: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                 &#10095;

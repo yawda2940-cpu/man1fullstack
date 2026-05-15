@@ -426,21 +426,16 @@ footer {
    ========================================================= */
 @media screen and (max-width: 992px) {
     
-    /* 1. OBAT UTAMA: Lepaskan Semua Kuncian Tinggi! */
-    /* Ini akan memperbaiki latar belakang abu-abu yang terputus di halaman Home */
-    section, header, main, div {
+    /* 1. OBAT UTAMA: Lepaskan Semua Kuncian Tinggi (Tanpa merusak div card!) */
+    section, header, main {
         height: auto !important;
         min-height: 0 !important;
     }
 
-
-    /* 3. DETEKSI OTOMATIS FLEXBOX (Kiri-Kanan jadi Atas-Bawah) */
-    /* Kode ini akan memaksa SEMUA elemen yang tadinya Kiri-Kanan menjadi Atas-Bawah */
+    /* 3. DETEKSI OTOMATIS FLEXBOX (Kiri-Kanan jadi Atas-Bawah yang terarah) */
     .profil-container, 
     .layanan-container, 
-    .partner-grid,
-    [style*="display: flex"], /* Mencari elemen yang punya style flex inline */
-    section > div { /* Menargetkan wadah utama di dalam section (seperti di halaman Home) */
+    .partner-grid {
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
@@ -450,8 +445,7 @@ footer {
     /* 4. Melebarkan elemen anak menjadi 100% penuh */
     .profil-kiri, .profil-kanan,
     .layanan-kiri, .layanan-kanan,
-    [class*="kiri"], [class*="kanan"], /* Mendeteksi class apapun yang ada kata 'kiri' atau 'kanan' */
-    section > div > div { /* Menargetkan blok kiri/kanan di dalam section Home */
+    [class*="kiri"], [class*="kanan"] {
         width: 100% !important;
         max-width: 100% !important;
         text-align: center !important;
@@ -739,4 +733,134 @@ nav ul li a.active::after {
 /* Matikan garis bawah untuk menu dropdown agar tidak aneh */
 nav ul li.dropdown a.active::after {
     display: none;
+}
+
+/* =========================================
+   ANIMASI SKELETON LOADER
+========================================= */
+@keyframes pulse-skeleton {
+  0% { background-color: #e2e8f0; }
+  50% { background-color: #cbd5e1; }
+  100% { background-color: #e2e8f0; }
+}
+
+.skeleton-box {
+  animation: pulse-skeleton 1.5s ease-in-out infinite;
+  display: block;
+  border-radius: 8px;
+}
+
+/* Ukuran spesifik untuk kerangka kartu berita */
+.skeleton-img { height: 200px; width: 100%; margin-bottom: 15px; }
+.skeleton-title { height: 24px; width: 80%; margin-bottom: 10px; }
+.skeleton-text { height: 16px; width: 100%; margin-bottom: 8px; }
+.skeleton-text-short { height: 16px; width: 60%; }
+
+/* =========================================================
+   🔥 OBAT KUAT MOBILE RESPONSIVE (SWIPEABLE UI) 🔥
+   Menyulap tumpukan panjang menjadi slider horizontal elegan
+========================================================= */
+
+@media screen and (max-width: 768px) {
+    
+    /* 1. MENCEGAH HEADER/MENU TABRAKAN DI LAYAR KECIL */
+    nav ul {
+        overflow-x: auto !important;
+        white-space: nowrap !important;
+        gap: 15px !important;
+        padding-bottom: 5px !important;
+    }
+
+    /* 2. MERAPIKAN HERO SECTION (BENTO GRID JADI SLIDER) */
+    .hero {
+        padding: 100px 5% 60px 5% !important;
+        height: auto !important;
+    }
+    
+    /* Menyulap Grid Bento menjadi Slider Horizontal */
+    .hero > div:nth-child(2) > div:nth-child(2) {
+        display: flex !important;
+        flex-direction: row !important;
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory !important; /* Efek magnet saat digeser */
+        gap: 15px !important;
+        padding-bottom: 15px !important;
+        scroll-behavior: smooth !important;
+    }
+    
+    /* Memaksa setiap kotak Bento lebarnya 80% dari HP */
+    .hero > div:nth-child(2) > div:nth-child(2) > div {
+        flex: 0 0 80vw !important; 
+        scroll-snap-align: center !important; /* Berhenti di tengah layar */
+        min-height: 180px !important;
+    }
+
+    /* 3. STATISTIK ANGKA (Dijadikan Kotak 2x2 agar sangat hemat tempat) */
+    main > section:nth-child(3) > div {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important; /* 2 Kolom menyamping */
+        gap: 20px !important;
+        flex-direction: row !important; 
+    }
+
+    /* 4. KEUNGGULAN MADRASAH (JADI SLIDER HORIZONTAL) */
+    .wadah-card-3 {
+        display: flex !important;
+        flex-direction: row !important;
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory !important;
+        gap: 15px !important;
+        padding-bottom: 20px !important;
+    }
+
+    .wadah-card-3 > div {
+        flex: 0 0 80vw !important; /* Lebar 80%, sisa 20% untuk mengintip kartu sebelah */
+        scroll-snap-align: center !important;
+    }
+
+    /* 5. KABAR MADRASAH (MENYEMPURNAKAN SLIDER HORIZONTAL) */
+    .khusus-kabar > div:nth-child(2) {
+        padding: 0 10px !important; 
+    }
+
+    .wadah-berita-3 {
+        display: flex !important;
+        flex-direction: row !important; /* KUNCI UTAMA: Memaksa berbaris ke samping */
+        flex-wrap: nowrap !important; /* KUNCI UTAMA: Melarang elemen jatuh ke bawah */
+        overflow-x: auto !important; /* Memunculkan area geser (swipe) */
+        scroll-snap-type: x mandatory !important; /* Efek magnet saat digeser */
+        padding: 10px 0 20px 0 !important;
+        gap: 15px !important;
+    }
+    
+    .wadah-berita-3 > div {
+        flex: 0 0 85vw !important; /* Lebar kartu 85% dari layar HP */
+        max-width: 85vw !important; /* Kunci ganda agar tidak melar */
+        scroll-snap-align: center !important; /* Efek berhenti di tengah layar */
+    }
+
+    .card-polaroid {
+        height: auto !important;
+        min-height: 0 !important;
+        padding: 15px !important;
+    }
+
+    .card-polaroid img {
+        height: 180px !important;
+        width: 100% !important;
+        object-fit: cover !important;
+    }
+
+    /* 6. HILANGKAN SEMUA SCROLLBAR NATIVE AGAR TERLIHAT SEPERTI APLIKASI ASLI */
+    .hero > div:nth-child(2) > div:nth-child(2)::-webkit-scrollbar,
+    .wadah-card-3::-webkit-scrollbar,
+    .wadah-berita-3::-webkit-scrollbar,
+    nav ul::-webkit-scrollbar {
+        display: none !important;
+    }
+
+    /* Sembunyikan tombol panah di HP (Karena bisa di-swipe pakai jari) */
+    .khusus-kabar button {
+        display: none !important;
+    }
 }
