@@ -4,20 +4,25 @@ import { motion, AnimatePresence } from 'framer-motion';
 export default function ChatbotWidget() {
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState([
-        { sender: 'bot', text: 'Halo! Saya asisten virtual MAN 1 Kota Madiun. Ada yang bisa dibantu hari ini?' }
+        // 🔥 PERBAIKAN PERSONA: Lebih hangat dan beridentitas
+        { sender: 'bot', text: 'Halo! 👋 Saya Manda, asisten virtual MAN 1 Kota Madiun. Ada yang bisa Manda bantu hari ini?' }
     ]);
     const [input, setInput] = useState('');
     
-    // Fitur Auto-Scroll ke pesan terbaru
+    // 🔥 STATE BARU UNTUK INDIKATOR MENGETIK
+    const [isTyping, setIsTyping] = useState(false);
+    
     const messagesEndRef = useRef(null);
+    
+    // Auto-Scroll akan selalu aktif setiap ada pesan baru ATAU saat bot sedang mengetik
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-    }, [messages]);
+    }, [messages, isTyping]);
 
     const toggleChat = () => setIsOpen(!isOpen);
 
     // =====================================================================
-    // 🔥 PERUBAHAN 1: STATE & REF UNTUK MOUSE DRAG & WHEEL SCROLL DI SINI
+    // LOGIKA SCROLL CAROUSEL QUICK REPLIES
     // =====================================================================
     const carouselRef = useRef(null);
     const [isDragging, setIsDragging] = useState(false);
@@ -48,39 +53,97 @@ export default function ChatbotWidget() {
     };
     // =====================================================================
 
-    // 1. OTAK LOGIKA (SOP MAN 1 KOTA MADIUN YANG SUDAH DIPERBAIKI)
     const getTemplateResponse = (pertanyaan) => {
-        const teks = pertanyaan.toLowerCase();
+        const teks = pertanyaan.toLowerCase().trim();
         
-        if (teks.includes('biaya') || teks.includes('bayar')) {
-            return "Untuk informasi detail mengenai biaya pendidikan, akan disampaikan secara resmi pada saat pengumuman daftar ulang melalui website SPMB MAN 1 Kota Madiun.";
-        } else if (teks.includes('jadwal') || teks.includes('kapan') || teks.includes('tanggal')) {
-            return "Pendaftaran online dibuka pada Mei - Juni 2026. Penyerahan berkas dan tes seleksi dilakukan pada bulan Juni 2026.";
-        } else if (teks.includes('asrama') || teks.includes('ma\'had') || teks.includes('boarding') || teks.includes('tahfidz')) {
-            return "Ya! Kami menyediakan program Boarding/Tahfidz (Ma'had) khusus bagi siswa yang berminat pada pendalaman ilmu agama dan komitmen menghafal Al-Qur'an.";
-        } else if (teks.includes('ekskul') || teks.includes('ekstrakurikuler') || teks.includes('kegiatan')) {
-            return "MAN 1 Kota Madiun punya banyak ekskul keren! Mulai dari Pramuka, Paskibra, PMR, Jurnalistik, hingga Olahraga dan Seni. Cek lengkapnya di menu Ekstrakurikuler ya.";
-        } else if (teks.includes('zonasi')) {
-            return "MAN 1 Kota Madiun TIDAK memberlakukan sistem zonasi. Kami menerima siswa dari seluruh wilayah Indonesia. Silakan mendaftar!";
-        } else if (teks.includes('syarat')) {
-            return "Syarat pendaftaran: Beragama Islam, lulusan MTs/SMP, maksimal 21 tahun. Ada 3 jalur: Prestasi, Reguler, dan Tahfidz. Cek detailnya di menu Info PPDB ya!";
-        } else if (teks.includes('lokasi') || teks.includes('alamat') || teks.includes('dimana')) {
-            return "Alamat kami di Jl. Soekarno Hatta No. 81, Demangan, Kec. Taman, Kota Madiun, Jawa Timur.";
-        } else if (teks.includes('daftar') || teks.includes('ppdb') || teks.includes('masuk')) {
-            return "Untuk pendaftaran siswa baru, Anda bisa melalui 3 jalur: Prestasi, Reguler, dan Tahfidz. Pendaftaran dilakukan secara online di website resmi SPMB MAN 1 Kota Madiun.";
-        } else {
-            return "Maaf, saat ini saya hanya Asisten Virtual otomatis. Untuk pertanyaan lebih detail, silakan hubungi admin kami via WhatsApp di menu Kontak.";
+        if (teks.match(/(halo|hai|hi|assalamu|assalamualaikum|samlikum|pagi|siang|sore|malam|selamat|manda)/)) {
+            return "Wa'alaikumsalam / Halo Kak! 👋 Manda di sini. Selamat datang di layanan informasi MAN 1 Kota Madiun. Ada yang bisa Manda bantu jelaskan mengenai program, fasilitas, atau pendaftaran madrasah kita?";
         }
+
+        const faqDatabase = [
+            {
+                keywords: ['biaya', 'bayar', 'spp', 'uang gedung', 'harga', 'tarif'],
+                answer: "Terkait biaya pendidikan, Manda belum bisa kasih rincian pastinya sekarang ya Kak. Tapi tenang saja, rincian resmi akan diumumkan transparan saat pengumuman daftar ulang di website SPMB kita. Pantau terus ya! 💸"
+            },
+            {
+                keywords: ['jadwal', 'kapan', 'tanggal', 'buka', 'tutup'],
+                answer: "Catat tanggalnya ya Kak! 🗓️ Pendaftaran online biasanya dibuka pada bulan Mei hingga Juni 2026. Untuk penyerahan berkas fisik dan tes seleksi akan dijadwalkan menyusul di bulan Juni."
+            },
+            {
+                keywords: ['asrama', 'ma\'had', 'boarding', 'tahfidz', 'mondok', 'pesantren'],
+                answer: "Kabar baik! 🕌 MAN 1 Kota Madiun punya program Ma'had (Asrama) khusus untuk siswa-siswi yang ingin mendalami ilmu agama dan berkomitmen menghafal Al-Qur'an. Kuotanya terbatas lho, jadi siapkan diri ya!"
+            },
+            {
+                keywords: ['ekskul', 'ekstrakurikuler', 'kegiatan', 'pramuka', 'paskibra', 'basket'],
+                answer: "Wah, kalau bahas ekskul di sini juaranya! 🏆 Kita punya Pramuka, Paskibra, PMR, Jurnalistik, Robotik, Karya Ilmiah, hingga berbagai klub Olahraga dan Seni. Kakak bisa cek galeri lengkapnya di menu Ekstrakurikuler."
+            },
+            {
+                keywords: ['zonasi', 'jarak', 'luar kota', 'pindah'],
+                answer: "Tenang saja Kak, MAN 1 Kota Madiun **TIDAK** menggunakan sistem zonasi! 🌍 Kami membuka pintu lebar-lebar untuk siswa berprestasi dari seluruh penjuru Indonesia. Dari mana pun asal Kakak, silakan mendaftar!"
+            },
+            {
+                keywords: ['syarat', 'persyaratan', 'berkas', 'nilai', 'rapor'],
+                answer: "Syarat utamanya tentu beragama Islam, lulusan SMP/MTs sederajat, dan usia maksimal 21 tahun ya Kak. 📝 Nanti ada 3 jalur yang bisa dipilih: Jalur Prestasi, Reguler, atau Tahfidz. Siapkan nilai rapor dan piagam (jika ada) dari sekarang ya!"
+            },
+            {
+                keywords: ['lokasi', 'alamat', 'dimana', 'tempat', 'jalan'],
+                answer: "Gedung kita ada di lokasi yang sangat strategis kok! 📍 Tepatnya di Jl. Soekarno Hatta No. 81, Demangan, Kec. Taman, Kota Madiun. Kakak bisa cari 'MAN 1 Kota Madiun' langsung di Google Maps."
+            },
+            {
+                keywords: ['daftar', 'ppdb', 'masuk', 'caranya', 'link', 'spmb'],
+                answer: "Mau daftar? Gampang banget! 💻 Seluruh proses pendaftaran dilakukan secara online melalui website resmi SPMB MAN 1 Kota Madiun. Kakak tinggal klik menu 'PPDB' di navigasi atas website ini untuk info lebih lanjut."
+            },
+            // --- TAMBAHAN PERTANYAAN BARU (EXPANDED KNOWLEDGE BASE) ---
+            {
+                keywords: ['beasiswa', 'kip', 'bantuan', 'gratis'],
+                answer: "Punya prestasi akademik/non-akademik? Jangan khawatir! 🎓 MAN 1 Kota Madiun menyediakan berbagai kemudahan, dan kami juga menerima calon siswa yang memiliki KIP (Kartu Indonesia Pintar). Jangan ragu untuk mendaftar ya!"
+            },
+            {
+                keywords: ['seragam', 'baju', 'pakaian'],
+                answer: "Untuk ketentuan jenis seragam dan ukurannya, nanti akan ada panduan khusus yang diberikan dari madrasah setelah Kakak resmi dinyatakan lulus seleksi dan melakukan daftar ulang. 👕"
+            },
+            {
+                keywords: ['jurusan', 'ipa', 'ips', 'agama', 'program'],
+                answer: "Di MAN 1 Kota Madiun, selain MIPA, IPS, dan Keagamaan, kita juga punya program unggulan seperti Kelas Keterampilan TIK (bekerja sama dengan ITS) dan program SKS (Akselerasi lulus 2 tahun). Keren kan? 🚀"
+            },
+            {
+                keywords: ['kontak', 'whatsapp', 'wa', 'telepon', 'admin', 'tanya manusia'],
+                answer: "Manda kurang paham dengan pertanyaan spesifik Kakak? 📞 Jangan sungkan untuk ngobrol langsung dengan Admin Manusia kita. Kakak bisa hubungi nomor WhatsApp resmi yang ada di menu 'Kontak'."
+            }
+        ];
+
+        for (let item of faqDatabase) {
+            // Jika ada minimal 1 kata di pertanyaan user yang cocok dengan keywords kita
+            if (item.keywords.some(keyword => teks.includes(keyword))) {
+                return item.answer;
+            }
+        }
+
+        return "Maaf ya Kak, pertanyaan Kakak sepertinya di luar jangkauan Manda. 😅 Manda ini asisten virtual yang khusus diprogram untuk membahas informasi seputar MAN 1 Kota Madiun. Boleh tanya seputar PPDB, fasilitas, ekskul, atau jadwal pendaftaran aja ya!";
     };
 
-    // 2. FUNGSI PEMROSESAN PESAN UTAMA
+    // =====================================================================
+    // 🔥 PERBAIKAN LOGIKA: ARTIFICIAL DELAY (JEDA MANUSIAWI)
+    // =====================================================================
     const processMessage = (text) => {
         if (!text.trim()) return;
+        
+        // 1. Masukkan pesan user ke layar
         setMessages((prev) => [...prev, { sender: 'user', text }]);
+        
+        // 2. Nyalakan status "Bot sedang mengetik..."
+        setIsTyping(true);
+        
+        // 3. Hitung jeda secara acak agar lebih natural (antara 1.5 hingga 2.5 detik)
+        const randomDelay = Math.floor(Math.random() * 1000) + 1500;
+
         setTimeout(() => {
             const balasan = getTemplateResponse(text);
+            
+            // 4. Matikan status mengetik, lalu masukkan balasan bot
+            setIsTyping(false);
             setMessages((prev) => [...prev, { sender: 'bot', text: balasan }]);
-        }, 800); 
+        }, randomDelay); 
     };
 
     const handleQuickReply = (templateText) => processMessage(templateText);
@@ -113,8 +176,8 @@ export default function ChatbotWidget() {
                         {/* Header Chat */}
                         <div style={{ background: '#1b5e20', color: 'white', padding: '15px', fontWeight: 'bold', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                                <span style={{ fontSize: '1.2rem' }}>🤖</span>
-                                <span>Tanya MAN 1 Madiun</span>
+                                <div style={{ width: '10px', height: '10px', background: '#4CAF50', borderRadius: '50%', boxShadow: '0 0 5px #4CAF50' }}></div>
+                                <span>Manda - MAN 1 Madiun</span>
                             </div>
                             <button onClick={toggleChat} style={{ background: 'none', border: 'none', color: 'white', cursor: 'pointer', fontSize: '1.2rem' }}>✖</button>
                         </div>
@@ -122,16 +185,47 @@ export default function ChatbotWidget() {
                         {/* Area Pesan */}
                         <div style={{ flex: 1, padding: '15px', overflowY: 'auto', background: '#f9f9f9', display: 'flex', flexDirection: 'column', gap: '10px' }}>
                             {messages.map((msg, idx) => (
-                                <div key={idx} style={{ alignSelf: msg.sender === 'user' ? 'flex-end' : 'flex-start', background: msg.sender === 'user' ? '#1b5e20' : '#e0e0e0', color: msg.sender === 'user' ? 'white' : 'black', padding: '10px 15px', borderRadius: '15px', maxWidth: '85%', fontSize: '0.9rem', lineHeight: '1.4' }}>
+                                <div key={idx} style={{ 
+                                    alignSelf: msg.sender === 'user' ? 'flex-end' : 'flex-start', 
+                                    background: msg.sender === 'user' ? '#1b5e20' : '#ffffff', 
+                                    color: msg.sender === 'user' ? 'white' : '#333', 
+                                    padding: '12px 16px', 
+                                    borderRadius: msg.sender === 'user' ? '15px 15px 0 15px' : '15px 15px 15px 0', 
+                                    maxWidth: '85%', 
+                                    fontSize: '0.9rem', 
+                                    lineHeight: '1.4',
+                                    boxShadow: '0 2px 5px rgba(0,0,0,0.05)',
+                                    border: msg.sender === 'bot' ? '1px solid #eee' : 'none'
+                                }}>
                                     {msg.text}
                                 </div>
                             ))}
+
+                            {/* =====================================================================
+                                🔥 INDIKATOR "SEDANG MENGETIK..." MENGGUNAKAN FRAMER MOTION
+                            ===================================================================== */}
+                            {isTyping && (
+                                <div style={{ 
+                                    alignSelf: 'flex-start', 
+                                    background: '#ffffff', 
+                                    padding: '12px 16px', 
+                                    borderRadius: '15px 15px 15px 0', 
+                                    boxShadow: '0 2px 5px rgba(0,0,0,0.05)',
+                                    border: '1px solid #eee',
+                                    display: 'flex',
+                                    gap: '5px',
+                                    alignItems: 'center'
+                                }}>
+                                    <motion.div animate={{ y: [0, -6, 0] }} transition={{ repeat: Infinity, duration: 0.6, delay: 0 }} style={{ width: '6px', height: '6px', background: '#999', borderRadius: '50%' }} />
+                                    <motion.div animate={{ y: [0, -6, 0] }} transition={{ repeat: Infinity, duration: 0.6, delay: 0.2 }} style={{ width: '6px', height: '6px', background: '#999', borderRadius: '50%' }} />
+                                    <motion.div animate={{ y: [0, -6, 0] }} transition={{ repeat: Infinity, duration: 0.6, delay: 0.4 }} style={{ width: '6px', height: '6px', background: '#999', borderRadius: '50%' }} />
+                                </div>
+                            )}
+
                             <div ref={messagesEndRef} />
                         </div>
 
-                        {/* =====================================================================
-                            🔥 PERUBAHAN 2: DIV BUNGKUSAN TOMBOL DIBERI EVENT LISTENER DRAG 
-                        ===================================================================== */}
+                        {/* Quick Replies Carousel */}
                         <div 
                             className="quick-reply-carousel" 
                             ref={carouselRef}
@@ -147,11 +241,11 @@ export default function ChatbotWidget() {
                                 display: 'flex', 
                                 overflowX: 'auto', 
                                 gap: '8px',
-                                scrollBehavior: isDragging ? 'auto' : 'smooth', // Matikan animasi saat di-drag
+                                scrollBehavior: isDragging ? 'auto' : 'smooth', 
                                 WebkitOverflowScrolling: 'touch',
                                 scrollbarWidth: 'none', 
                                 msOverflowStyle: 'none',
-                                cursor: isDragging ? 'grabbing' : 'grab' // Kursor jadi tangan menggenggam
+                                cursor: isDragging ? 'grabbing' : 'grab' 
                             }}
                         >
                             <style>{`.quick-reply-carousel::-webkit-scrollbar { display: none; }`}</style>
@@ -160,6 +254,8 @@ export default function ChatbotWidget() {
                                 <button 
                                     key={idx} 
                                     onClick={() => handleQuickReply(reply)}
+                                    // Matikan tombol saat bot sedang mengetik agar user tidak spam
+                                    disabled={isTyping} 
                                     style={{ 
                                         background: '#f1f8f5', 
                                         color: '#1b5e20', 
@@ -167,21 +263,13 @@ export default function ChatbotWidget() {
                                         padding: '8px 14px', 
                                         borderRadius: '20px', 
                                         fontSize: '0.8rem', 
-                                        cursor: 'pointer', 
+                                        cursor: isTyping ? 'not-allowed' : 'pointer', 
+                                        opacity: isTyping ? 0.5 : 1,
                                         transition: 'all 0.2s ease',
                                         whiteSpace: 'nowrap', 
                                         flexShrink: 0, 
                                         fontWeight: '500',
-                                        // 🔥 PERUBAHAN 3: ANTI-BLOCK TEKS SAAT DITARIK MOUSE
                                         userSelect: 'none' 
-                                    }}
-                                    onMouseOver={(e) => {
-                                        e.target.style.background = '#1b5e20';
-                                        e.target.style.color = '#ffffff';
-                                    }}
-                                    onMouseOut={(e) => {
-                                        e.target.style.background = '#f1f8f5';
-                                        e.target.style.color = '#1b5e20';
                                     }}
                                 >
                                     {reply}
@@ -191,8 +279,22 @@ export default function ChatbotWidget() {
 
                         {/* Input Area */}
                         <form onSubmit={handleSend} style={{ display: 'flex', borderTop: '1px solid #ddd' }}>
-                            <input type="text" value={input} onChange={(e) => setInput(e.target.value)} placeholder="Ketik pesan..." style={{ flex: 1, padding: '12px 15px', border: 'none', outline: 'none', fontSize: '0.9rem' }} />
-                            <button type="submit" style={{ background: '#1b5e20', color: 'white', border: 'none', padding: '0 20px', cursor: 'pointer', fontWeight: 'bold' }}>Kirim</button>
+                            <input 
+                                type="text" 
+                                value={input} 
+                                onChange={(e) => setInput(e.target.value)} 
+                                placeholder="Ketik pesan..." 
+                                // Matikan input saat bot sedang mengetik
+                                disabled={isTyping} 
+                                style={{ flex: 1, padding: '12px 15px', border: 'none', outline: 'none', fontSize: '0.9rem', backgroundColor: isTyping ? '#f5f5f5' : 'white' }} 
+                            />
+                            <button 
+                                type="submit" 
+                                disabled={isTyping || !input.trim()}
+                                style={{ background: '#1b5e20', color: 'white', border: 'none', padding: '0 20px', cursor: isTyping ? 'not-allowed' : 'pointer', fontWeight: 'bold', opacity: (isTyping || !input.trim()) ? 0.6 : 1 }}
+                            >
+                                Kirim
+                            </button>
                         </form>
                     </motion.div>
                 )}
