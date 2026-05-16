@@ -9,6 +9,7 @@ import Admin from './pages/Admin';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import ChatbotWidget from './components/ChatbotWidget';
+import TopProgressBar from './components/TopProgressBar';
 
 import Home from './pages/Home';
 import Kontak from './pages/Kontak';
@@ -28,6 +29,7 @@ export default function App() {
   const location = useLocation();
   return (
     <>
+    <TopProgressBar />
       {/* =========================================
           2. DEFAULT SEO & OPEN GRAPH (JARING PENGAMAN)
       ========================================= */}
