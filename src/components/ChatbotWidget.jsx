@@ -60,7 +60,17 @@ export default function ChatbotWidget() {
             return "Wa'alaikumsalam / Halo Kak! 👋 Manda di sini. Selamat datang di layanan informasi MAN 1 Kota Madiun. Ada yang bisa Manda bantu jelaskan mengenai program, fasilitas, atau pendaftaran madrasah kita?";
         }
 
+        // Jika user mengetik kata-kata di luar konteks sekolah, langsung blokir!
+        const kataKunciTerlarang = ['game', 'ff', 'mobile legend', 'ml', 'pubg', 'akun', 'pinjol', 'bank', 'shopee', 'tiktok', 'slot', 'judi'];
+        if (kataKunciTerlarang.some(terlarang => teks.includes(terlarang))) {
+            return "Waduh Kak 😅, Manda ini asisten virtual MAN 1 Kota Madiun, jadi Manda cuma bisa bantu jawab soal pendaftaran sekolah aja, bukan soal itu. Yuk, kembali ke topik madrasah! Ada yang mau ditanyakan soal PPDB?";
+        }
+
         const faqDatabase = [
+            {
+                keywords: ['daftar kip', 'kip', 'beasiswa', 'bantuan', 'gratis'],
+                answer: "Untuk pendaftaran jalur KIP (Kartu Indonesia Pintar) atau beasiswa, Kakak bisa melampirkan scan/foto kartu KIP saat mengisi formulir pendaftaran PPDB nanti. Pastikan kartunya masih aktif ya untuk mendapatkan keringanan! 🎓"
+            },
             {
                 keywords: ['biaya', 'bayar', 'spp', 'uang gedung', 'harga', 'tarif'],
                 answer: "Terkait biaya pendidikan, Manda belum bisa kasih rincian pastinya sekarang ya Kak. Tapi tenang saja, rincian resmi akan diumumkan transparan saat pengumuman daftar ulang di website SPMB kita. Pantau terus ya! 💸"
