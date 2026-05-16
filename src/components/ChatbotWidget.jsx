@@ -177,7 +177,7 @@ export default function ChatbotWidget() {
                         <div style={{ background: '#1b5e20', color: 'white', padding: '15px', fontWeight: 'bold', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                                 <div style={{ width: '10px', height: '10px', background: '#4CAF50', borderRadius: '50%', boxShadow: '0 0 5px #4CAF50' }}></div>
-                                <span>Manda - MAN 1 Madiun</span>
+                                <span>Manda - MAN 1 Kota Madiun</span>
                             </div>
                             <button onClick={toggleChat} style={{ background: 'none', border: 'none', color: 'white', cursor: 'pointer', fontSize: '1.2rem' }}>✖</button>
                         </div>
