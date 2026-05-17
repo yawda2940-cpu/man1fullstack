@@ -3,10 +3,21 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 export default function ChatbotWidget() {
     const [isOpen, setIsOpen] = useState(false);
+    const savedName = localStorage.getItem('man1_visitor_name');
+    const [userName, setUserName] = useState(savedName || '');
+    
+    // Jika nama sudah ada, langsung masuk mode 'CHATTING'. Jika belum, masuk mode 'ASK_NAME'
+    const [chatStep, setChatStep] = useState(savedName ? 'CHATTING' : 'ASK_NAME'); 
+
     const [messages, setMessages] = useState([
-        // 🔥 PERBAIKAN PERSONA: Lebih hangat dan beridentitas
-        { sender: 'bot', text: 'Halo! 👋 Saya Manda, asisten virtual MAN 1 Kota Madiun. Ada yang bisa Manda bantu hari ini?' }
+        { 
+            sender: 'bot', 
+            text: savedName 
+                ? `Halo lagi, Kak ${savedName}! 👋 Senang Kakak kembali berkunjung. Ada yang mau didiskusikan dengan Manda hari ini?`
+                : 'Halo! 👋 Manda di sini, asisten virtual MAN 1 Kota Madiun. Agar kita ngobrolnya lebih akrab, Manda boleh tahu nama Kakak siapa?' 
+        }
     ]);
+
     const [input, setInput] = useState('');
     
     // 🔥 STATE BARU UNTUK INDIKATOR MENGETIK
@@ -43,7 +54,6 @@ export default function ChatbotWidget() {
     };
 
     const stopDrag = () => setIsDragging(false);
-
     const doDrag = (e) => {
         if (!isDragging) return;
         e.preventDefault();
@@ -56,8 +66,11 @@ export default function ChatbotWidget() {
     const getTemplateResponse = (pertanyaan) => {
         const teks = pertanyaan.toLowerCase().trim();
         
+        // Sapaan dinamis (Jika nama kosong, pakai 'Kak', jika ada panggil namanya)
+        const sapaan = userName ? `Kak ${userName}` : 'Kak'; 
+
         if (teks.match(/(halo|hai|hi|assalamu|assalamualaikum|samlikum|pagi|siang|sore|malam|selamat|manda)/)) {
-            return "Wa'alaikumsalam / Halo Kak! 👋 Manda di sini. Selamat datang di layanan informasi MAN 1 Kota Madiun. Ada yang bisa Manda bantu jelaskan mengenai program, fasilitas, atau pendaftaran madrasah kita?";
+            return `Wa'alaikumsalam / Halo ${sapaan}! 👋 Manda di sini. Ada yang bisa Manda bantu lagi?`;
         }
 
         // Jika user mengetik kata-kata di luar konteks sekolah, langsung blokir!
@@ -129,7 +142,7 @@ export default function ChatbotWidget() {
             }
         }
 
-        return "Maaf ya Kak, pertanyaan Kakak sepertinya di luar jangkauan Manda. 😅 Manda ini asisten virtual yang khusus diprogram untuk membahas informasi seputar MAN 1 Kota Madiun. Boleh tanya seputar PPDB, fasilitas, ekskul, atau jadwal pendaftaran aja ya!";
+        return `Maaf ${sapaan}, pertanyaan Kakak sepertinya di luar jangkauan Manda. 😅 Boleh tanya seputar PPDB, fasilitas, atau ekskul aja ya!`;
     };
 
     // =====================================================================
@@ -144,14 +157,55 @@ export default function ChatbotWidget() {
         // 2. Nyalakan status "Bot sedang mengetik..."
         setIsTyping(true);
         
-        // 3. Hitung jeda secara acak agar lebih natural (antara 1.5 hingga 2.5 detik)
+        // 3. Hitung jeda secara acak agar lebih natural
         const randomDelay = Math.floor(Math.random() * 1000) + 1500;
 
         setTimeout(() => {
-            const balasan = getTemplateResponse(text);
-            
-            // 4. Matikan status mengetik, lalu masukkan balasan bot
             setIsTyping(false);
+            let balasan = "";
+            const rawText = text.toLowerCase().trim();
+
+            // 🔥 1. SECRET COMMAND INTERCEPTOR (HAPUS INGATAN)
+            // Cek apakah user mengetik perintah rahasia sebelum mengecek hal lain
+            const perintahGantiNama = [
+                'ganti nama', 'reset nama', 'ubah nama', 'salah nama', 'salah', 'salah panggil', 'salah sebut',
+                'salah nama', 'salah ketik', 'salah panggil', 'eh salah penamaan', 'salah sebut nama', 'salah ngasih nama',
+                'bukan itu', 'namaku bukan', 'nama saya bukan', 'bukan nama', 'aku salah ngetik nama',
+                'lupa nama', 'lupa namaku', 'lupa nama saya', 'lupa panggilanku', 'lupa sebutanku',
+                'eh salah kasih nama', 'salah kasih nama', 'salah input nama', 'salah masukin nama', 'salah ketik nama',
+                'salah penulisan nama', 'salah penamaan', 'salah sebut nama', 'salah panggil nama', 'salah sebut panggilan',
+                'reset ingatan', 'hapus ingatan', 'lupakan nama', 'lupakan aku', 'lupakan namaku',
+                'ganti panggilan', 'ubah panggilan', 'salah panggilanku', 'eh salah panggilanku',
+                'salah sebutanku', 'eh salah sebutanku', 'salah panggil nama', 'eh salah panggil nama',
+                'salah oi', 'eh salah oi', 'salah hey', 'eh salah hey', 'salah panggil', 'eh salah panggil',
+                'salah jeneng', 'eh salah jeneng', 'salah nama panggilan', 'eh salah nama panggilan', 'salah jenenge', 'eh salah jenenge'
+            ];
+            
+            // Cek apakah chat pengguna mengandung salah satu dari frasa di atas
+            if (perintahGantiNama.some(perintah => rawText.includes(perintah))) {
+                localStorage.removeItem('man1_visitor_name'); // Hapus dari memori HP
+                setUserName(''); // Kosongkan state nama
+                setChatStep('ASK_NAME'); // Kembalikan ke mode minta nama
+                
+                balasan = "Oops, maafkan Manda ya Kak! 🙏 Ingatan Manda soal nama Kakak sudah direset. Mari kita kenalan ulang, nama Kakak yang benar siapa nih?";
+            }
+            // 🔥 2. LOGIKA JIKA SEDANG MEMINTA NAMA PENGGUNA
+            else if (chatStep === 'ASK_NAME') {
+                const nameParts = text.trim().split(" ");
+                let extractedName = nameParts[nameParts.length - 1]; 
+                extractedName = extractedName.charAt(0).toUpperCase() + extractedName.slice(1);
+
+                setUserName(extractedName);
+                localStorage.setItem('man1_visitor_name', extractedName); 
+                setChatStep('CHATTING'); 
+
+                balasan = `Salam kenal Kak ${extractedName}! 😊 Wah, nama yang bagus. Sekarang, ada yang bisa Manda bantu jelaskan mengenai program, fasilitas, atau pendaftaran madrasah kita?`;
+            } 
+            // 🔥 3. LOGIKA JIKA SUDAH TAHU NAMA (MODE NGOBROL BIASA)
+            else {
+                balasan = getTemplateResponse(text); // userName sudah tidak perlu dikirim karena kita memanggilnya langsung di getTemplateResponse
+            }
+
             setMessages((prev) => [...prev, { sender: 'bot', text: balasan }]);
         }, randomDelay); 
     };
