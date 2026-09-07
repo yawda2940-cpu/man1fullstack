@@ -153,18 +153,22 @@ Buka `http://localhost:5173` di browser.
 
 ## Konfigurasi Lingkungan (.env)
 
-Salin nilai dari Firebase Console project Anda ke file `.env` di root proyek. **JANGAN pernah meng-commit file `.env`** (sudah ada di `.gitignore`).
+> **Keamanan dulu!** Nilai kredensial Firebase **TIDAK ditampilkan di README ini** dan **tidak boleh di-commit** ke Git (file `.env` sudah masuk `.gitignore`).
 
-```
-VITE_FIREBASE_API_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-VITE_FIREBASE_AUTH_DOMAIN=your-project.firebaseapp.com
-VITE_FIREBASE_PROJECT_ID=your-project
-VITE_FIREBASE_STORAGE_BUCKET=your-project.appspot.com
-VITE_FIREBASE_MESSAGING_SENDER_ID=1234567890
-VITE_FIREBASE_APP_ID=1:1234567890:web:xxxxxxxxxxxxxxxx
-```
+File `.env` berisi **6 variabel kredensial Firebase** yang dibutuhkan aplikasi untuk terhubung ke project Firebase Anda. Isi setiap variabel dengan nilai rahasia yang diambil dari Firebase Console — nilai tersebut berupa kode unik milik project Anda.
 
-> Konfigurasi dibaca di `src/firebase.js`. Deklarasi variabel **wajib diawali `VITE_`** agar dapat diakses oleh Vite.
+**Langkah mengambil kredensial:**
+1. Buka [Firebase Console](https://console.firebase.google.com) → pilih project Anda.
+2. Masuk ke **Project settings (ikon roda gigi)** → tab **General**.
+3. Gulir ke bagian **Your apps** → pilih aplikasi Web (lambang `</>`).
+4. Klik **Config** — di sana akan terlihat 6 pasang nama variabel beserta nilai rahasianya (termasuk sekumpulan huruf/angka acak).
+5. Salin nilai-nilai tersebut ke file `.env`, dengan nama variabel yang sama seperti konfigurasi di `src/firebase.js`.
+
+**Aturan penting saat mengisi `.env`:**
+- Setiap nama variabel **wajib diawali `VITE_`** agar bisa dibaca oleh Vite.
+- Tulis persis `NAMA_VARIABEL=nilai` (tanpa tanda kutip).
+- Jangan bagikan, kirim, atau screenshot isi file `.env` ke siapa pun di luar tim.
+- Buat file `.env` baru secara mandiri di setiap lingkungan (lokal, Vercel) — jangan salin dari orang lain.
 
 ---
 
@@ -182,7 +186,7 @@ VITE_FIREBASE_APP_ID=1:1234567890:web:xxxxxxxxxxxxxxxx
 | `kritik_saran` | Feedback & aduan dari pengguna |
 | `izin_penelitian` | Pengajuan izin penelitian |
 
-5. Salin kredensial ke `.env` seperti di atas.
+5. Salin kredensial project Anda ke file `.env` sesuai panduan **Konfigurasi Lingkungan (.env)**.
 
 ---
 
@@ -214,7 +218,7 @@ VITE_FIREBASE_APP_ID=1:1234567890:web:xxxxxxxxxxxxxxxx
 
 ## Keamanan
 
-- `.env` diabaikan Git — kredensial Firebase **tidak boleh** kantor ke repositori.
+- `.env` diabaikan Git — kredensial Firebase **tidak boleh** masuk ke repositori.
 - CSP ketat di `vercel.json` membatasi sumber skrip, gaya, gambar, dan koneksi.
 - Halaman `/admin` memvalidasi email pengguna terhadap koleksi `admins` di Firestore; pengguna tidak terdaftar akan otomatis di-sign-out.
 - Gunakan **aturan keamanan Firestore** yang ketat (mis. login admin diwajibkan untuk operasi tulis) di konsol Firebase.
