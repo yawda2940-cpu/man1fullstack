@@ -1,8 +1,15 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 
 export default function Kontak() {
   return (
-    <main>
+    <>
+        <Helmet>
+            <title>Kontak & Lokasi | MAN 1 Kota Madiun</title>
+            <meta name="description" content="Hubungi kami melalui saluran resmi atau kunjungi kampus MAN 1 Kota Madiun. Temukan alamat, nomor telepon, email, dan peta lokasi resmi di sini." />
+            <link rel="canonical" href="https://man1kotamadiun.vercel.app/kontak" />
+        </Helmet>
+        <main>
         {/* Latar Belakang Hero */}
         <section className="kontak-hero">
             <div className="judul-section text-center">
@@ -124,5 +131,6 @@ export default function Kontak() {
             </div>
         </section>
     </main>
+    </>
   );
 }

@@ -102,7 +102,7 @@ export default function PPDB() {
                 <title>Info PPDB & Pendaftaran | MAN 1 Kota Madiun</title>
                 <meta name="description" content="Informasi lengkap Penerimaan Peserta Didik Baru (PPDB) MAN 1 Kota Madiun Tahun Ajaran 2026/2027. Cek jalur pendaftaran, syarat, jadwal seleksi, dan pendaftaran online tanpa zonasi di sini." />
                 
-                <link rel="canonical" href="https://man1kotamadiun.sch.id/ppdb" />
+                <link rel="canonical" href="https://man1kotamadiun.vercel.app/ppdb" />
 
                 {/* Meta Tags untuk Social Media (Open Graph) */}
                 <meta property="og:title" content="Pendaftaran Siswa Baru MAN 1 Kota Madiun (Bebas Zonasi)" />

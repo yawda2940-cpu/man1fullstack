@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import ScrollReveal from '../components/ScrollReveal';
 
 // =========================================
@@ -248,6 +249,11 @@ export default function ProfilMadrasah() {
 if (detailPartner) {
     return (
         <main style={{ background: '#fafafa', minHeight: '100vh', paddingBottom: '100px', animation: 'fadeIn 0.5s ease' }}>
+            <Helmet>
+                <title>{detailPartner.nama} | Partner MAN 1 Kota Madiun</title>
+                <meta name="description" content={`Kerjasama strategis antara MAN 1 Kota Madiun dengan ${detailPartner.nama} dalam program pendidikan dan pengembangan siswa.`} />
+                <link rel="canonical" href="https://man1kotamadiun.vercel.app/profil-madrasah" />
+            </Helmet>
             <section style={{ padding: '160px 5% 80px 5%', background: '#1b5e20', color: 'white', textAlign: 'center' }}>
                 <button onClick={() => setDetailPartner(null)} style={{ background: 'transparent', border: 'none', color: '#ffc107', cursor: 'pointer', fontWeight: 'bold', fontSize: '1.1rem', marginBottom: '20px' }}>&larr; Kembali ke Partner</button>
                 <h1 style={{ fontSize: '3rem', fontWeight: '900' }}>{detailPartner.nama}</h1>
@@ -290,7 +296,13 @@ if (detailPartner) {
   // 6. TAMPILAN HALAMAN PROFIL UTAMA
   // =========================================
   return (
-    <main style={{ animation: 'fadeIn 0.5s ease' }}>
+    <>
+        <Helmet>
+            <title>Profil & Sejarah Madrasah | MAN 1 Kota Madiun</title>
+            <meta name="description" content="Kenali lebih dekat MAN 1 Kota Madiun. Sejarah berdirinya madrasah, Visi dan Misi, Sarana Prasarana (Fasilitas), serta Partner Kerjasama resmi kami." />
+            <link rel="canonical" href="https://man1kotamadiun.vercel.app/profil-madrasah" />
+        </Helmet>
+        <main style={{ animation: 'fadeIn 0.5s ease' }}>
         {/* SECTION 1: HERO & SEJARAH */}
         <section className="profil-hero" style={{ padding: '80px 5%', overflow: 'hidden' }}>
             <div className="profil-container" style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '50px' }}>
@@ -425,5 +437,6 @@ if (detailPartner) {
         </section>
         <style>{`@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }`}</style>
     </main>
+    </>
   );
 }

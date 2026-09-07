@@ -1,8 +1,15 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 
 export default function ProfilTU() {
   return (
-    <main>
+    <>
+        <Helmet>
+            <title>Tata Usaha & Staf Administrasi | MAN 1 Kota Madiun</title>
+            <meta name="description" content="Profil Tenaga Kependidikan dan Tata Usaha MAN 1 Kota Madiun. Kami melayani administrasi kesiswaan, kepegawaian, dan layanan publik madrasah." />
+            <link rel="canonical" href="https://man1kotamadiun.vercel.app/profil-tu" />
+        </Helmet>
+        <main>
         <section className="guru-hero">
             <div className="guru-title">
                 {/* Tag br ditutup */}
@@ -36,5 +43,6 @@ export default function ProfilTU() {
             </div>
         </section>
     </main>
+    </>
   );
 }

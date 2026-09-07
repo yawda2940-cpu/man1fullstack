@@ -11,6 +11,7 @@ export default function Kurikulum() {
         <Helmet>
             <title>Kurikulum & Program Pendidikan | MAN 1 Kota Madiun</title>
             <meta name="description" content="Informasi Kurikulum MAN 1 Kota Madiun. Tersedia program Kelas Keterampilan, Kedinasan, Bimbingan PTN, serta Peminatan MIPA, IPS, dan Keagamaan." />
+            <link rel="canonical" href="https://man1kotamadiun.vercel.app/kurikulum" />
             
             {/* Meta Tags untuk Social Media (Open Graph) */}
             <meta property="og:title" content="Kurikulum Unggulan MAN 1 Kota Madiun" />

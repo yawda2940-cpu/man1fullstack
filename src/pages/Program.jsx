@@ -1,8 +1,15 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 
 export default function Program() {
   return (
-    <main>
+    <>
+        <Helmet>
+            <title>Program Unggulan & Kurikulum | MAN 1 Kota Madiun</title>
+            <meta name="description" content="Pelajari program unggulan MAN 1 Kota Madiun: Kelas Keterampilan TIK, Persiapan Kedinasan, Bimbingan PTN, dan Kurikulum Terpadu MIPA, IPS, dan Agama." />
+            <link rel="canonical" href="https://man1kotamadiun.vercel.app/program" />
+        </Helmet>
+        <main>
         <section className="program-hero">
             <div className="judul-section">
                 <h2>KURIKULUM MADRASAH</h2>
@@ -95,5 +102,6 @@ export default function Program() {
             </div>
         </section>
     </main>
+    </>
   );
 }

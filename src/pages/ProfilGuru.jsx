@@ -1,8 +1,15 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 
 export default function ProfilGuru() {
   return (
-    <main>
+    <>
+        <Helmet>
+            <title>Daftar Guru & Tenaga Pendidik | MAN 1 Kota Madiun</title>
+            <meta name="description" content="Kenali lebih dekat para pendidik hebat di MAN 1 Kota Madiun. Daftar guru profesional dan tenaga kependidikan yang berdedikasi membimbing siswa." />
+            <link rel="canonical" href="https://man1kotamadiun.vercel.app/profil-guru" />
+        </Helmet>
+        <main>
         <section className="guru-hero">
             {/* Class 'reveal' dihapus agar teks langsung muncul */}
             <div className="guru-title">
@@ -43,5 +50,6 @@ export default function ProfilGuru() {
             </div>
         </section>
     </main>
+    </>
   );
 }

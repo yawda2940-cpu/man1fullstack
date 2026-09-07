@@ -80,6 +80,7 @@ export default function Layanan() {
             <Helmet>
                 <title>Layanan Publik & Pengaduan | MAN 1 Kota Madiun</title>
                 <meta name="description" content="Portal layanan masyarakat MAN 1 Kota Madiun. Sampaikan kritik, saran, aduan, permohonan izin penelitian, hingga legalisir ijazah secara online." />
+                <link rel="canonical" href="https://man1kotamadiun.vercel.app/layanan" />
                 
                 {/* Meta Tags untuk Social Media (Open Graph) */}
                 <meta property="og:title" content="Layanan Publik & Pengaduan MAN 1 Madiun" />

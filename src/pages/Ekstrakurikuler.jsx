@@ -13,6 +13,7 @@ export default function Ekstrakurikuler() {
         <Helmet>
             <title>Ekstrakurikuler & Pengembangan Diri | MAN 1 Kota Madiun</title>
             <meta name="description" content="Kembangkan minat, bakat, dan potensi kepemimpinan melalui berbagai program ekstrakurikuler unggulan di MAN 1 Kota Madiun." />
+            <link rel="canonical" href="https://man1kotamadiun.vercel.app/ekstrakurikuler" />
             
             {/* Meta Tags untuk Social Media (Open Graph) */}
             <meta property="og:title" content="Ekstrakurikuler MAN 1 Kota Madiun" />

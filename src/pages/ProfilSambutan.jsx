@@ -1,8 +1,15 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 
 export default function ProfilSambutan() {
   return (
-    <main>
+    <>
+        <Helmet>
+            <title>Sambutan Kepala Madrasah | MAN 1 Kota Madiun</title>
+            <meta name="description" content="Baca sambutan resmi dari Kepala MAN 1 Kota Madiun, Trisnoto S.PD., M.M. Visi kepemimpinan dalam mencerdaskan anak bangsa melalui pendidikan madrasah." />
+            <link rel="canonical" href="https://man1kotamadiun.vercel.app/profil-sambutan" />
+        </Helmet>
+        <main>
         <section className="hero">
             
             <div className="hero-image-wrapper">
@@ -28,5 +35,6 @@ export default function ProfilSambutan() {
 
         </section>
     </main>
+    </>
   );
 }
