@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { collection, addDoc, query, orderBy, deleteDoc, doc, serverTimestamp, onSnapshot } from 'firebase/firestore';
+import { collection, addDoc, query, orderBy, deleteDoc, doc, serverTimestamp, onSnapshot, where, getDocs } from 'firebase/firestore';
 import { onAuthStateChanged, signOut, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { db, auth } from '../firebase';
 
 export default function Admin() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isChecking, setIsChecking] = useState(true); // State loading saat cek akses
     const [loginError, setLoginError] = useState('');
     const [activeTab, setActiveTab] = useState('berita'); 
     const [userProfile, setUserProfile] = useState(null);
@@ -23,23 +24,36 @@ export default function Admin() {
     const [listPenelitian, setListPenelitian] = useState([]);
     const [loadingPenelitian, setLoadingPenelitian] = useState(false);
 
-    const EMAIL_ADMIN = "yawda2940@gmail.com";
-
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            if (user && user.email === EMAIL_ADMIN) {
-                setIsLoggedIn(true);
-                setUserProfile(user);
-                fetchBerita();
-                fetchFeedback();
-                fetchPenelitian(); // Panggil data penelitian
-            } else if (user && user.email !== EMAIL_ADMIN) {
-                signOut(auth);
-                setLoginError('❌ Akses Ditolak: Kredensial tidak valid.');
-                setIsLoggedIn(false);
+        const unsubscribe = onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                try {
+                    // CEK KE FIREBASE: Apakah email ini ada di koleksi 'admins'?
+                    const q = query(collection(db, "admins"), where("email", "==", user.email));
+                    const querySnapshot = await getDocs(q);
+
+                    if (!querySnapshot.empty) {
+                        // Jika ditemukan, izinkan masuk
+                        setIsLoggedIn(true);
+                        setUserProfile(user);
+                        fetchBerita();
+                        fetchFeedback();
+                        fetchPenelitian();
+                    } else {
+                        // Jika tidak ada di whitelist, keluarkan
+                        await signOut(auth);
+                        setLoginError('❌ Akses Ditolak: Email Anda tidak terdaftar sebagai admin.');
+                        setIsLoggedIn(false);
+                    }
+                } catch (error) {
+                    console.error("Auth Error:", error);
+                    setLoginError('❌ Gagal memvalidasi kredensial.');
+                    setIsLoggedIn(false);
+                }
             } else {
                 setIsLoggedIn(false);
             }
+            setIsChecking(false);
         });
         return () => unsubscribe();
     }, []);
